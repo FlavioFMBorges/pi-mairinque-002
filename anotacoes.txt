@@ -1,0 +1,65 @@
+INSTALAÇÃO DO AMBIENTE VIRTUAL
+
+0- digitar python para ver a versão de python no sistema
+1- Criar uma pasta com o nome do site
+2- Abrir o prompt de comando e com o comando: cd + caminho da pasta
+3- dentro da pasta digitar o comando: py -3 -m venv .venv
+4- Para ativar digitar: .venv\Scripts\activate
+5- Se tiver problema de execução de politicas:
+abrir a pesquisa e buscar por power shell e abrir como adm > colar > get-executionpolicy (para ver se está restrito) > Set-executionpolicy Unrestrited (para tirar a restrição). Pode mudar também no editor de registro: Computador\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\PowerShell\1\ShellIds\Microsoft.PowerShell
+
+
+
+Bibliotecas
+pip3 install flask
+
+.venv\scripts\python.exe -m pip install --upgrade pip
+
+pip3 install sqlalchemy
+
+pip3 install flask-sqlalchemy
+
+
+LINKAR COM GIT
+
+criar as branch local e remota
+clonar o que tem no github
+subir os aquivos para o github com control + k
+
+criar arquivo app.py na raiz
+criar a pasta templates > arquivo index.html
+
+CRIAR O RUN DO FLASK
+variáveis de ambiente, digitar na procura do windows
+variável = FLASK_APP valor = app
+variável = FLASK_ENV valor = development
+
+ESTILOS
+pasta static > pasta css > estilo.css
+
+
+BD
+Criar o arquivo schema.sql para criar a tabela
+Cria o arquivo init_db.py e usar o comando abaixo para criar o bd chamada database.db
+Comando para windows py init_db.py
+
+MOSTRAR TODAS AS POSTAGENS
+acrescentado código em apps.py
+    posts = Posts.query.all()
+
+acrescentado código em index.html
+    {% for post in posts %}
+        <a href="#">
+            <h2>{{ post['title'] }}</h2>
+        </a>
+        <span class="badge badge-primary">{{ post['created'] }}</span>
+        <hr>
+    {% endfor %}
+
+todo não está funcionando
+
+
+MOSTRAR DETALHES DE UMA POSTAGEM
+CRIAR UMA NOVA POSTAGEM
+EDITAR UMA POSTAGEM EXISTENTE
+FAZER DEPLOY NUM SERVIDOR REMOTO
