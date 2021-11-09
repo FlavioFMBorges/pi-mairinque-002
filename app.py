@@ -32,6 +32,10 @@ def index():
     return render_template('index.html', posts=posts)
 
 
+if __name__ == '__main__':
+    app.run(debug=True)
+
+
 @app.route('/<int:post_id>')
 def post(post_id):
     post = get_post(post_id)
