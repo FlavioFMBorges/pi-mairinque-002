@@ -66,3 +66,5 @@ FAZER DEPLOY NUM SERVIDOR REMOTO
 
 
 Setado o SQL dialetic global para sqllite
+
+heroku logs --tail # quando acontecer um erro
