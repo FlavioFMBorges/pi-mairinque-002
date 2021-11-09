@@ -40,7 +40,7 @@ pasta static > pasta css > estilo.css
 
 BD
 Criar o arquivo schema.sql para criar a tabela
-Cria o arquivo init_db.py e usar o comando abaixo para criar o bd chamada database.db
+Criar o arquivo init_db.py e usar o comando abaixo para criar o bd chamada database.db
 Comando para windows py init_db.py
 
 MOSTRAR TODAS AS POSTAGENS
