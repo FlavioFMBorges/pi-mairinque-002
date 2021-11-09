@@ -1,4 +1,4 @@
-name: CIPIok
+name: CIPI
 
 on: [push]  #,pull_request
 
