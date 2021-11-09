@@ -9,14 +9,6 @@ jobs:
       PIPENV_IGNORE_VIRTUALENVS: 1
     runs-on: ubuntu-latest
 
-    services:
-      postgres:
-        image: sqldatabase
-        env:
-          POSTGRES_USER: pythonpro
-          POSTGRES_PASSWORD: pythonpro
-          POSTGRES_DB: database.db
-        ports: ['5434:5432']
 
     steps:
     - uses: actions/checkout@v2
