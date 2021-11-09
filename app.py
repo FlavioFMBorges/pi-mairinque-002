@@ -66,14 +66,14 @@ def edit(id):
     post = get_post(id)
 
     if request.method == 'POST':
-        title = request.form['title']
+        title = request.form["title"]
         content = request.form['content']
 
         if not title:
             flash('Title is required!')
         else:
             conn = get_db_connection()
-            conn.execute('UPDATE posts SET title = ?, content = ?'
+            conn.execute('UPDATE posts SET title = ?, "content" = ?'
                          ' WHERE id = ?',
                          (title, content, id))
             conn.commit()
