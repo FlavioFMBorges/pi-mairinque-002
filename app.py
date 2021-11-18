@@ -1,8 +1,10 @@
 import sqlite3
-from flask import Flask, render_template, request, url_for, flash, redirect
-import os
-import datetime
-from werkzeug.exceptions import abort
+from flask import Flask, render_template
+# request, url_for, flash, redirect
+# import os
+# import datetime
+# from werkzeug.exceptions import abort
+
 
 def get_db_connection():
     conn = sqlite3.connect('database.db')
@@ -12,6 +14,7 @@ def get_db_connection():
 
 app = Flask(__name__, static_folder='static', template_folder='templates')
 app.config['SECRET_KEY'] = 'your secret key'
+
 
 @app.route('/index')
 @app.route('/')
