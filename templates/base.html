@@ -1,43 +1,46 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    <title>{% block title %} {% endblock %}</title>
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
-        <a class="navbar-brand" href="{{ url_for('index')}}">FlaskBlog</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">About</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="{{url_for('create')}}">New Post</a>
-            </li>
-            </ul>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title style="display: none">{% block title %} {% endblock %}</title>
+    <link href="../static/css/style.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+    
+    <div id="topo">
+        <div id="logo">
+            <a href="{{url_for('index')}}"><img src="../static/imagens/logo.png" border="0"/></a>
         </div>
-    </nav>
-    <div class="container">
-        {% for message in get_flashed_messages() %}
-            <div class="alert alert-danger">{{ message }}</div>
-        {% endfor %}
-        {% block content %} {% endblock %}
-    </div>
+        <nav class="menu">
+            <ul>
+                <li><a href="{{url_for('index')}}">Home</a></li>
+                <li><a href="../templates/ranking.html">Ranking de Fraudes</a></li>
+                <li><a href="../templates/formulario.html">Formulário</a></li>
+                <li><a href="../templates/relatorio.html">Relatório Estatístico</a></li>
+                <li><a href="../templates/sobre.html">Sobre</a></li>
+            </ul>
+        </nav>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  </body>
+    </div><!--fecha topo -->
+
+  {% block content %} {% endblock %}
+
+    <footer>
+        <div id="info">
+            <p><b>Sobre nós</b></p>
+            <p>Somos estudantes de <br>Engenharia da Computação <br>da <a href="https://univesp.br/" target="_blank" >UNIVESP.</a></p>
+        </div>
+
+        <div id="links">
+            <p><b>Principais Links</b></p><br><br>
+            <a href="https://antifraudes.febraban.org.br/?gclid=EAIaIQobChMIu5rLhJLp8wIVS7LICh3sGQppEAAYAyAAEgLREfD_BwE" target="_blank">Dicas Anti-golpes</a><br>
+            <a href="https://globoplay.globo.com/v/9867521/?s=0s" target="_blank">Reportagem sobre fraudes no Brasil</a><br>
+            <a href="https://www.cnnbrasil.com.br/tudo-sobre/fraudes-bancarias/">Notícias sobre fraudes bancárias</a><br>
+        </div>
+
+    </footer><!--fecha rodape -->
+
+</body>
 </html>

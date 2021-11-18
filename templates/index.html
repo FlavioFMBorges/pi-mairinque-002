@@ -1,15 +1,39 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>{% block title %} Bem vindo ao serviço de postagens! {% endblock %}</h1>
-    {% for post in posts %}
-        <a href="{{ url_for('post', post_id=post['id']) }}">
-            <h2>{{ post['title'] }}</h2>
-        </a>
-        <span class="badge badge-primary">{{ post["created"] }}</span>
-        <a href="{{ url_for('edit', id=post['id']) }}">
-            <span class="badge badge-warning">Edit</span>
-        </a>
-        <hr>
-    {% endfor %}
+    <h1>{% block title %} Portal Interativo sobre Fraudes Bancárias {% endblock %}</h1>
+    <div id="bemvindo">
+        <div id="esquerda">
+            <p><b>Bem-vindo</b></p>
+            <p>O portal permite que qualquer pessoa acesse as informações e encaminhe os relatos de fraudes que tenha sido vítima.</p>
+            <p>Por meio do sistema, além de conhecer os tipos de fraudes mais comuns aplicadas contra os internautas que realizam
+                transações bancárias e compras online, terá dicas de como evitar o golpe, de contato em caso de ter sido a vítima e
+                links úteis.
+            </p>
+        </div>
+
+        <div id="direita">
+            <a href="../templates/relatorio.html"><img src="../static/imagens/grafico.jpg" border="0"/></a>
+        </div>
+    </div><!--fecha bemvindo -->
+
+    <div id="cards">
+        <div id="card1">
+            <p>Pesquisa recente destaca aumento de consumidores vítimas de fraudes financeiras.</p>
+            <a href="../templates/ranking.html">Golpes mais comuns</a>
+        </div>
+
+        <div id="card2">
+            <p>Você já caiu em golpe financeiro?<br>Conte-nos como foi <br>a sua experiência?</p>
+            <a href="../templates/formulario.html">Formulário</a>
+        </div>
+
+        <div id="card3">
+            <p>Em caso de ter sido vítima<br> de fraude financeira em <br>transações online.</p>
+            <a href="../templates/contate.html">Contate</a>
+        </div>
+
+    </div><!--fecha cards -->
 {% endblock %}
+
+</html>
