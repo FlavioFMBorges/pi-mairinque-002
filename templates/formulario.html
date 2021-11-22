@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div id="formulario">
+    <article>
+        <form name="meuForm" method="post" id="formulario">
+            <div class="box">
+                <h1>Formulário</h1>
+        
+                <label>
+                    <span>Nome Completo:</span>
+                    <input type="text" class="input_text" name="nome" id="name"/>
+        
+                </label>
+                
+                <label>
+                    <span>E-mail:</span>
+                    <input type="text" class="input_text" name="email" id="email"/>
+                </label>
+                <label>
+                    <span>Qual é a sua idade?</span>
+                    <input type="text" class="input_text" name="text" id="text2"/>
+            </label>
+        
+                <label>
+                    <span>Você já passou por algum tipo de fraude bancária?</span> 
+                
+                    <span><br><INPUT TYPE="RADIO" NAME="OPCAO" VALUE="op1">Fraude por PIX</span><br>
+                        
+                    <span><INPUT TYPE="RADIO" NAME="OPCAO" VALUE="op2">Fraude por Mensagem por Whatsapp<br></span>
+                    
+                    <span><INPUT TYPE="RADIO" NAME="OPCAO" VALUE="op3">Fraude em Site da Internet</span> <br><br>
+                    <br><br>
+                </label>
+                
+                <label>
+                    <span>Você valida informações ao efetuar uma transação bancária?</span>
+                    <textarea class="message" name="feedback" id="feedback"></textarea> 
+            </label>
+        
+                <label>
+                    <span>Você já passou por uma fraude ou conhece alguém que já passou por uma fraude bancária diga nos qual foi o tipo?</span>
+                    <textarea class="message" name="feedback" id="feedback"></textarea>  
+                    <input type="button" class="button" value="Enviar" /><br><br><br>
+                </label>
+            </div>
+        </form>
+    </article>
+    </div>
+    
+    {% endblock %}
+
+</body>
+</html>

@@ -27,3 +27,28 @@ def index():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+
+@app.route('/ranking')
+def ranking():
+    return render_template('ranking.html')
+
+
+@app.route('/formulario')
+def formulario():
+    return render_template('formulario.html')
+
+
+@app.route('/relatorio')
+def relatorio():
+    return render_template('relatorio.html')
+
+
+@app.route('/sobre')
+def sobre():
+    return render_template('sobre.html')
+
+
+@app.route('/contate')
+def contate():
+    return render_template('contate.html')
