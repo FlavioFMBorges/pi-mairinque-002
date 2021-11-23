@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>{% block title %} {{ post['nome'] }} {% endblock %}</h2>
+    <span class="badge badge-primary">{{ post['created'] }}</span>
+    <p>{{ post['email'] }}</p>
+    <span class="badge badge-primary">{{ post['created'] }}</span>
+    <p>{{ post['idade'] }}</p>
+    <span class="badge badge-primary">{{ post['created'] }}</span>
+    <p>{{ post['tipo'] }}</p>
+    <span class="badge badge-primary">{{ post['created'] }}</span>
+    <p>{{ post['opcao'] }}</p>
+    <span class="badge badge-primary">{{ post['created'] }}</span>
+    <p>{{ post['valida'] }}</p>
+    <span class="badge badge-primary">{{ post['created'] }}</span>
+    <p>{{ post['descricao'] }}</p>
+    <span class="badge badge-primary">{{ post['created'] }}</span>
+{% endblock %}

@@ -1,61 +1,68 @@
 {% extends 'base.html' %}
-
 {% block content %}
-<h1>{% block title %}  FORMULÁRIO {% endblock %}</h1>
+<h1>{% block title %} Edit "{{ post['nome'] }}" {% endblock %}</h1>
 
 <form method="post">
     <div class="form-group">
         <label for="nome">Nome Completo</label>
-        <input type="text" name="nome"
-               placeholder="Informe o nome completo" class="form-control"
-               value="{{ request.form['nome'] }}"></input>
+        <input type="text" name="nome" placeholder="Post nome"
+               class="form-control"
+               value="{{ request.form['nome'] or post['nome'] }}">
+        </input>
     </div>
     <div class="form-group">
         <label for="email">Email</label>
         <input type="text" name="email"
-               placeholder="Informe o e-mail" class="form-control"
+               placeholder="Post email" class="form-control"
                value="{{ request.form['email'] }}"></input>
     </div>
     <div class="form-group">
         <label for="idade">Qual é a sua idade?</label>
         <input type="text" name="idade"
-               placeholder="Informe a idade" class="form-control"
+               placeholder="Post idade" class="form-control"
                value="{{ request.form['idade'] }}"></input>
     </div>
     <div class="form-group">
-        <label for="tipo">Você já passou por algum tipo de fraude bancária?(Sim/Não)</label>
+        <label for="tipo">Você já passou por algum tipo de fraude bancária?(S/N)</label>
         <input type="text" name="tipo"
-               placeholder="Informe o tipo de fraude (Sim ou Não)" class="form-control"
+               placeholder="Post tipo" class="form-control"
                value="{{ request.form['tipo'] }}"></input>
     </div>
     <div class="form-group">
-         <label>Qual foi o tipo de fraude?</label>
+        <label for="opcao">Qual foi o tipo de fraude?</label>
         <input type="RADIO" name="opcao" value="op1" placeholder="Post opcao" class="form-control"
-            value="{{ request.form['opcao'] }}">Fraude por PIX </input>
+            value="{{ request.form['opcao'] }}">Fraude por PIX><br></input>
         <input type="RADIO" name="opcao" value="op2" placeholder="Post opcao" class="form-control"
-            value="{{ request.form['opcao'] }}">Fraude por Mensagem por Whatsapp</input>
+            value="{{ request.form['opcao'] }}">Fraude por Mensagem por Whatsapp<br></input>
         <input type="RADIO" name="opcao" value="op3" placeholder="Post opcao" class="form-control"
-            value="{{ request.form['opcao'] }}">Fraude em Site da Internet</input><br><br>
+            value="{{ request.form['opcao'] }}">Fraude em Site da Internet<br></input>
     </div>
     <div class="form-group">
-        <label for="valida">Você valida informações ao efetuar uma transação bancária? (Sim/Não)</label>
+        <label for="valida">Você valida informações ao efetuar uma transação bancária? (S/N)</label>
         <input type="text" name="valida"
-               placeholder="Informe (Sim ou Não) " class="form-control"
+               placeholder="Post valida" class="form-control"
                value="{{ request.form['valida'] }}"></input>
     </div>
     <div class="form-group">
-        <label for="fraude">Você já passou por uma fraude? (Sim/Não)</label>
+        <label for="fraude">Você já passou por uma fraude?(S/N)</label>
         <input type="text" name="fraude"
-               placeholder="Informe (Sim ou Não)" class="form-control"
+               placeholder="Post fraude" class="form-control"
                value="{{ request.form['fraude'] }}"></input>
     </div>
     <div class="form-group">
         <label for="descricao">Voce conhece alguém que já passou por uma fraude bancária diga nos qual foi o tipo?</label>
-        <textarea name="descricao" placeholder="Informe a descrição"
+        <textarea name="descricao" placeholder="Post descricao"
                   class="form-control">{{ request.form['content'] }}</textarea>
     </div>
+
     <div class="form-group">
         <button type="submit" class="btn btn-primary">Enviar</button>
     </div>
+</form>
+<hr>
+<form action="{{ url_for('delete', id=post['id']) }}" method="POST">
+    <input type="submit" value="Delete Post"
+            class="btn btn-danger btn-sm"
+            onclick="return confirm('Você quer excluir o formulario?')">
 </form>
 {% endblock %}
