@@ -63,3 +63,16 @@ Criar arquivo Procfile com os dados: web: gunicorn app:app #o aplicativo é web,
 Setado o SQL dialetic global para sqllite
 heroku logs --tail # quando acontecer um erro
 
+
+Tags
+criar o arquivo __init__.py com a versão
+__version__ = 'PI_html_css_1.1'
+
+criar a tag com o nome da versão
+git tag PI_html_css_1.1
+
+enviar para o github
+git push --tags
+
+
+https://jinja.palletsprojects.com/en/3.0.x/templates/#template-inheritance
