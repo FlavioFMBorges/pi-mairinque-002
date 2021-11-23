@@ -325,7 +325,7 @@ body{
     #formulario div.box .button:hover{
         background-color: #20427f;
     }
-    
+
 }
 
 
@@ -353,20 +353,20 @@ body{
         font-family:Arial, Helvetica, sans-serif;
         font-size: 20px;
     }
-    
-    
+
+
         #menu-sanfona ul {
             margin: 0;
             padding: 0;
             list-style: none;
             width: 102px;
-            
+
         }
-        
+
         #menu-sanfona ul li {
             position: relative;
         }
-        
+
         #menu-sanfona li ul {
             position: absolute;
             left: 99px;
@@ -376,10 +376,10 @@ body{
             display: none;
             z-index:999;
         }
-        
+
         #menu-sanfona li:hover ul { display: block; }
-        
-        
+
+
         #menu-sanfona ul li a {
             display: block;
             text-decoration: none;
@@ -389,7 +389,7 @@ body{
             font-family:Arial, Helvetica, sans-serif;
             font-size:20px;
             font-weight:bolder;
-            color:#23498a;		
+            color:#23498a;
         }
         #teste{ padding:5px;
             border:1px solid #23498a;
@@ -402,12 +402,12 @@ body{
         height: 470px;
         background-image: url(../imagens/bg.jpg);
     }
-    
+
     #esquerda{
         width: 100%;
         height: 260px;
     }
-    
+
         #esquerda p{
             font-family:Arial, Helvetica, sans-serif;
             color:#fff;
@@ -415,7 +415,7 @@ body{
             font-size: 16px;
             padding: 10px;
         }
-    
+
     #direita{
         width: 100%;
         height: 210px;
@@ -434,7 +434,7 @@ body{
             margin: 0px auto;
             width: 350px;
         }
-    
+
     #cards{
         width: 100%;
         height: 625px;
@@ -442,7 +442,7 @@ body{
         margin: 0px auto;
         padding: 10px 0 10px 0;
     }
-    
+
         #cards p{
             font-family:Arial, Helvetica, sans-serif;
             color:#000;
@@ -451,7 +451,7 @@ body{
             font-weight: bold;
             margin: 10px 0 50px 0;
         }
-    
+
         #cards a{
             font-family:Arial, Helvetica, sans-serif;
             text-decoration: none;
@@ -461,25 +461,25 @@ body{
             padding: 5px 10px 5px 10px;
             font-size: 16px;
         }
-    
+
             #cards a:hover{
                 background-color: #20427f;
             }
-        
+
     #card1{
         width: 70%;
         height: 200px;
         border: 2px solid #90acdb;
         margin:0px auto;
     }
-    
+
     #card2{
         width: 70%;
         height: 200px;
         border: 2px solid #90acdb;
         margin:0px auto;
     }
-    
+
     #card3{
         width: 70%;
         height: 200px;
@@ -551,7 +551,7 @@ body{
             color:#000;
             text-decoration: none;
         }
-    
+
     #links{
         width:100%;
     }
@@ -574,85 +574,87 @@ body{
             text-decoration: none;
         }
 
-    /*formulário*/
+/*formulário*/
 
-    #formulario{
-        margin: 0 0 100px 0;
-    }
-
-    #formulario form,input,select,textarea{color:#171717; font:100% normal Arial, Helvetica, sans-serif;}
-
-    #formulario div.box {
-        margin:0 auto;
-        width:300px;
-        background:#124386;
-        position:relative;
-        top:50px;
-        border:1px solid #124386;
-    }
-
-    #formulario div.box h1 {
-        color:#ffffff;
-        font-size:18px;
-        text-transform:uppercase;
-        padding:5px 0 5px 5px;
-        border-bottom:1px solid #ffffff;
-        border-top:1px solid #ffffff;
-    }
-
-    #formulario div.box label {
-        width:100%;
-        display: block;
-        background:#124386;
-        border-top:1px solid #ffffff;
-        border-bottom:1px solid #ffffff;
-        padding:10px 0 10px 0;
-    }
-
-    #formulario div.box label span {
-        display: block;
-        color:#ffffff;
-        font-size:12px;
-        width:300px;
-        padding:5px 20px 0 0;
-    }
-
-    #formulario div.box .input_text {
-        padding:10px 10px;
-        width:200px;
-        background:#ffffff;
-        border-bottom: 1px double #171717;
-        border-top: 1px double #171717;
-        border-left:1px double #333333;
-        border-right:1px double #333333;
-    }
-
-    #formulario div.box .message{
-        padding:7px 7px;
-        width:200px;
-        background:#ffffff;
-        border-bottom: 1px double #124386;
-        border-top: 1px double #124386;
-        border-left:1px double #124386;
-        border-right:1px double #124386;
-        overflow:hidden;
-        height:120px;
-    }
-
-    #formulario div.box .button{
-        margin:0 0 10px 0;
-        padding:4px 7px;
-        color:#fff;
-        border:0px;
-        position: relative;
-        top:20px;
-        width:150px;
-        background-color: #4373c5;
-        border-radius: 7px;
-    }
-
-    #formulario div.box .button:hover{
-        background-color: #20427f;
-    }
+#formulario{
+    margin: 0 0 100px 0;
 }
 
+#formulario form,input,select,textarea{color:#171717; font:100% normal Arial, Helvetica, sans-serif;}
+
+#formulario div.box {
+    margin:0 auto;
+    width:500px;
+    background:#124386;
+    position:relative;
+    top:50px;
+    border:1px solid #124386;
+}
+
+#formulario div.box h1 {
+    color:#ffffff;
+    font-size:18px;
+    text-transform:uppercase;
+    padding:5px 0 5px 5px;
+    border-bottom:1px solid #ffffff;
+    border-top:1px solid #ffffff;
+}
+
+#formulario div.box label {
+    width:100%;
+    display: block;
+    background:#124386;
+    border-top:1px solid #ffffff;
+    border-bottom:1px solid #ffffff;
+    padding:10px 0 10px 0;
+}
+
+#formulario div.box label span {
+    display: block;
+    color:#ffffff;
+    font-size:12px;
+    float:left;
+    width:100px;
+    text-align:right;
+    padding:5px 20px 0 0;
+}
+
+#formulario div.box .input_text {
+    padding:10px 10px;
+    width:350px;
+    background:#ffffff;
+    border-bottom: 1px double #171717;
+    border-top: 1px double #171717;
+    border-left:1px double #333333;
+    border-right:1px double #333333;
+}
+
+#formulario div.box .message{
+    padding:7px 7px;
+    width:350px;
+    background:#ffffff;
+    border-bottom: 1px double #124386;
+    border-top: 1px double #124386;
+    border-left:1px double #124386;
+    border-right:1px double #124386;
+    overflow:hidden;
+    height:120px;
+}
+
+#formulario div.box .button{
+    margin:0 0 10px 0;
+    padding:4px 7px;
+    color:#fff;
+    border:0px;
+    position: relative;
+    top:20px;
+    left:30px;
+    width:150px;
+    background-color: #4373c5;
+    border-radius: 7px;
+}
+
+#formulario div.box .button:hover{
+    background-color: #20427f;
+}
+}
