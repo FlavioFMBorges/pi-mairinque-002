@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title style="display: none">{% block title %} {% endblock %}</title>
     <link href="{{ url_for('static', filename='css/style.css') }}" type="text/css" rel="stylesheet" />
+
+
+
 </head>
 <body>
     
@@ -22,15 +25,16 @@
                 <li><a href="{{url_for('sobre')}}">Sobre</a></li>
             </ul>
         </nav>
-        <div id="menu-sanfona">
+
+<div id="menu-sanfona">
             <ul>
                  <li><a href="#"><img src="../static/imagens/menu.png" height="70" width="70" border="0"/></a>
                    <ul>
-                     <li><a href="{{url_for('index')}}">Home</a></li>
-                     <li><a href="{{url_for('ranking')}}">Ranking de Fraudes</a></li>
-                     <li><a href="{{url_for('formulario')}}">Formulário</a></li>
-                     <li><a href="{{url_for('relatorio')}}">Relatório Estatístico</a></li>
-                     <li><a href="{{url_for('sobre')}}">Sobre</a></li>
+                     <li><a href="{{url_for('index')}}"><div id="teste">Home</div></a></li>
+                     <li><a href="{{url_for('ranking')}}"><div id="teste">Ranking de Fraudes</div></a></li>
+                     <li><a href="{{url_for('formulario')}}"><div id="teste">Formulário</div></a></li>
+                     <li><a href="{{url_for('relatorio')}}"><div id="teste">Relatório Estatístico</div></a></li>
+                     <li><a href="{{url_for('sobre')}}"><div id="teste">Sobre</div></a></li>
                    </ul>
                  </li>
              </ul>
@@ -38,7 +42,9 @@
 
     </div><!--fecha topo -->
 
-  {% block content %} {% endblock %}
+
+{% block content %} {% endblock %}
+
 
     <footer>
         <div id="info">
