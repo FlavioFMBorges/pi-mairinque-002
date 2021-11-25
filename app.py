@@ -115,9 +115,26 @@ def ranking():
 #    return render_template('formulario.html')
 
 
-@app.route('/relatorio')
+@app.route('/relatorio', methods=('GET', 'POST'))
 def relatorio():
-    return render_template('relatorio.html')
+    conn = get_db_connection()
+    participa = conn.execute('SELECT COUNT(*) FROM posts').fetchone()[0]
+    dezoito = conn.execute('SELECT COUNT(*) FROM posts WHERE idade LIKE "de 18 a 27 anos"').fetchone()[0]
+    dezoito_porc = ((dezoito/participa)*100)
+    vinteoito = conn.execute('SELECT COUNT(*) FROM posts WHERE idade LIKE "de 28 a 39 anos"').fetchone()[0]
+    vinteoito_porc = ((vinteoito/participa)*100)
+    quarenta = conn.execute('SELECT COUNT(*) FROM posts WHERE idade LIKE "de 40 a 55 anos"').fetchone()[0]
+    quarenta_porc = ((quarenta/participa)*100)
+    cinquenta = conn.execute('SELECT COUNT(*) FROM posts WHERE idade LIKE "mais de 55 anos"').fetchone()[0]
+    cinquenta_porc = ((cinquenta/participa)*100)
+
+    tot_opcao = conn.execute('SELECT COUNT(*) FROM posts WHERE opcao LIKE "op%"').fetchone()[0]
+    whats = conn.execute('SELECT COUNT(*) FROM posts WHERE opcao LIKE "op2"').fetchone()[0]
+    whats_porc = ((whats/tot_opcao)*100)
+
+    conn.close()
+    return render_template('relatorio.html', COUNT=participa, dezoito=dezoito_porc, vinteoito=vinteoito_porc,
+                           quarenta=quarenta_porc, cinquenta=cinquenta_porc, whats=whats_porc)
 
 
 @app.route('/sobre')
