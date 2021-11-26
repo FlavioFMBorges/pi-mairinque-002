@@ -1,6 +1,7 @@
 import sqlite3
 from flask import Flask, render_template, request, url_for, flash, redirect
 from werkzeug.exceptions import abort
+import matplotlib.pyplot as plt
 
 
 def get_db_connection():
@@ -131,10 +132,11 @@ def relatorio():
     tot_opcao = conn.execute('SELECT COUNT(*) FROM posts WHERE opcao LIKE "op%"').fetchone()[0]
     whats = conn.execute('SELECT COUNT(*) FROM posts WHERE opcao LIKE "op2"').fetchone()[0]
     whats_porc = ((whats/tot_opcao)*100)
-
+    conn.commit()
     conn.close()
     return render_template('relatorio.html', COUNT=participa, dezoito=dezoito_porc, vinteoito=vinteoito_porc,
                            quarenta=quarenta_porc, cinquenta=cinquenta_porc, whats=whats_porc)
+
 
 
 @app.route('/sobre')
