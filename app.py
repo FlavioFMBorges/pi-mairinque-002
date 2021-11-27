@@ -145,9 +145,9 @@ def relatorio():
     sitenet_porc = ((whats / tot_opcao) * 100)
 
     maior = max(pix, whats, sitenet)
-    if maior == pix_porc:
+    if maior == pix:
         meio_fraude = ('Pix')
-    elif maior == whats_porc:
+    elif maior == whats:
         meio_fraude = ('mensagens pelo aplicativo WhatsApp')
     else:
         meio_fraude = ('um site da internet')
