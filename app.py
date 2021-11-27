@@ -120,6 +120,7 @@ def ranking():
 #    return render_template('formulario.html')
 
 
+
 @app.route('/relatorio', methods=('GET', 'POST'))
 def relatorio():
     conn = get_db_connection()
@@ -136,11 +137,26 @@ def relatorio():
     tot_opcao = conn.execute('SELECT COUNT(*) FROM posts WHERE opcao LIKE "op%"').fetchone()[0]
     whats = conn.execute('SELECT COUNT(*) FROM posts WHERE opcao LIKE "op2"').fetchone()[0]
     whats_porc = ((whats / tot_opcao) * 100)
+
+    pix = conn.execute('SELECT COUNT(*) FROM posts WHERE opcao LIKE "op1"').fetchone()[0]
+    pix_porc = ((whats / tot_opcao) * 100)
+
+    sitenet = conn.execute('SELECT COUNT(*) FROM posts WHERE opcao LIKE "op3"').fetchone()[0]
+    sitenet_porc = ((whats / tot_opcao) * 100)
+
+    maior = max(pix, whats, sitenet)
+    if maior == pix_porc:
+        meio_fraude = ('Pix')
+    elif maior == whats_porc:
+        meio_fraude = ('mensagens pelo aplicativo WhatsApp')
+    else:
+        meio_fraude = ('um site da internet')
+
+
     conn.commit()
     conn.close()
     return render_template('relatorio.html', COUNT=participa, dezoito=dezoito_porc, vinteoito=vinteoito_porc,
-                           quarenta=quarenta_porc, cinquenta=cinquenta_porc, whats=whats_porc)
-
+                           quarenta=quarenta_porc, cinquenta=cinquenta_porc, whats=whats_porc, meio_fraude=meio_fraude, maior=maior)
 
 @app.route('/sobre')
 def sobre():
