@@ -58,11 +58,15 @@ def formulario():
             flash('Insira o nome completo!')
         else:
             conn = get_db_connection()
-            conn.execute('INSERT INTO posts ( nome, email, idade, tipo, opcao, valida, fraude, descricao) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
-                         (nome, email, idade, tipo, opcao, valida, fraude, descricao))
+            conn.execute(
+                'INSERT INTO posts ( nome, email, idade, tipo, opcao, valida, fraude, descricao) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+                (nome, email, idade, tipo, opcao, valida, fraude, descricao))
             conn.commit()
             conn.close()
-            return redirect(url_for('index'))
+            if nome:
+                flash(
+                    'Muito obrigada por preencher nossa pesquisa. Concerteza você estará ajudando alguma pessoa em algum lugar do Brasil!')
+            return redirect(url_for('formulario'))
     return render_template('formulario.html')
 
 
@@ -84,9 +88,10 @@ def edit(id):
             flash('Insira o nome!')
         else:
             conn = get_db_connection()
-            conn.execute('UPDATE posts SET nome = ?, "email" = ?, "idade" = ?, "tipo" = ?, "opcao" = ?, "valida" = ?, "fraude" = ?, "descricao" = ?  '
-                         ' WHERE id = ?',
-                         (nome, email, idade, tipo, opcao, valida, fraude, descricao, id))
+            conn.execute(
+                'UPDATE posts SET nome = ?, "email" = ?, "idade" = ?, "tipo" = ?, "opcao" = ?, "valida" = ?, "fraude" = ?, "descricao" = ?  '
+                ' WHERE id = ?',
+                (nome, email, idade, tipo, opcao, valida, fraude, descricao, id))
             conn.commit()
             conn.close()
             return redirect(url_for('index'))
@@ -120,24 +125,21 @@ def relatorio():
     conn = get_db_connection()
     participa = conn.execute('SELECT COUNT(*) FROM posts').fetchone()[0]
     dezoito = conn.execute('SELECT COUNT(*) FROM posts WHERE idade LIKE "de 18 a 27 anos"').fetchone()[0]
-    dezoito_porc = ((dezoito/participa)*100)
+    dezoito_porc = ((dezoito / participa) * 100)
     vinteoito = conn.execute('SELECT COUNT(*) FROM posts WHERE idade LIKE "de 28 a 39 anos"').fetchone()[0]
-    vinteoito_porc = ((vinteoito/participa)*100)
+    vinteoito_porc = ((vinteoito / participa) * 100)
     quarenta = conn.execute('SELECT COUNT(*) FROM posts WHERE idade LIKE "de 40 a 55 anos"').fetchone()[0]
-    quarenta_porc = ((quarenta/participa)*100)
+    quarenta_porc = ((quarenta / participa) * 100)
     cinquenta = conn.execute('SELECT COUNT(*) FROM posts WHERE idade LIKE "mais de 55 anos"').fetchone()[0]
-    cinquenta_porc = ((cinquenta/participa)*100)
+    cinquenta_porc = ((cinquenta / participa) * 100)
 
     tot_opcao = conn.execute('SELECT COUNT(*) FROM posts WHERE opcao LIKE "op%"').fetchone()[0]
     whats = conn.execute('SELECT COUNT(*) FROM posts WHERE opcao LIKE "op2"').fetchone()[0]
-    whats_porc = ((whats/tot_opcao)*100)
+    whats_porc = ((whats / tot_opcao) * 100)
     conn.commit()
     conn.close()
     return render_template('relatorio.html', COUNT=participa, dezoito=dezoito_porc, vinteoito=vinteoito_porc,
                            quarenta=quarenta_porc, cinquenta=cinquenta_porc, whats=whats_porc)
-
-
-
 
 
 @app.route('/sobre')

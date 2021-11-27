@@ -30,13 +30,19 @@
                value="{{ request.form['tipo'] }}"></input>
     </div>
     <div class="form-group">
-         <label>Qual foi o tipo de fraude?</label>
-        <input type="RADIO" name="opcao" value="op1" placeholder="Post opcao" class="form-control"
-            value="{{ request.form['opcao'] }}">Fraude por PIX </input>
-        <input type="RADIO" name="opcao" value="op2" placeholder="Post opcao" class="form-control"
-            value="{{ request.form['opcao'] }}">Fraude por Mensagem por Whatsapp</input>
-        <input type="RADIO" name="opcao" value="op3" placeholder="Post opcao" class="form-control"
-            value="{{ request.form['opcao'] }}">Fraude em Site da Internet</input><br><br>
+         <label>Qual foi o tipo de fraude?</label><br>
+         <div class = "form-check">
+        <input type="RADIO" name="opcao" value="op1" placeholder="Post opcao" class="form-check-input"
+            value="{{ request.form['opcao'] }}">Fraude por PIX </input><br>
+        </div>
+        <div class = "form-check">
+        <input type="RADIO" name="opcao" value="op2" placeholder="Post opcao" class="form-check-input"
+            value="{{ request.form['opcao'] }}">Fraude por Mensagem por Whatsapp</input><br>
+        </div>
+        <div class = "form-check">
+        <input type="RADIO" name="opcao" value="op3" placeholder="Post opcao" class="form-check-input"
+            value="{{ request.form['opcao'] }}">Fraude em Site da Internet</input><br>
+        </div>
     </div>
     <div class="form-group">
         <label for="valida">Você valida informações ao efetuar uma transação bancária? (Sim/Não)</label>
@@ -45,9 +51,9 @@
                value="{{ request.form['valida'] }}"></input>
     </div>
     <div class="form-group">
-        <label for="fraude">Você já passou por uma fraude? (Sim/Não)</label>
+        <label for="fraude">Qual foi o teor da mensagem?</label>
         <input type="text" name="fraude"
-               placeholder="Informe (Sim ou Não)" class="form-control"
+               placeholder="Informe o teor da mensagem" class="form-control"
                value="{{ request.form['fraude'] }}"></input>
     </div>
     <div class="form-group">
