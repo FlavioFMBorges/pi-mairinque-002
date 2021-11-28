@@ -9,7 +9,7 @@ def get_db_connection():
     conn.row_factory = sqlite3.Row
     return conn
 
-
+# Conexão com banco de dados
 def get_post(post_id):
     conn = get_db_connection()
     post = conn.execute('SELECT * FROM posts WHERE id = ?',
@@ -119,6 +119,7 @@ def ranking():
 @app.route('/relatorio', methods=('GET', 'POST'))
 def relatorio():
     conn = get_db_connection()
+# variaveis filtradas do bd para substituir porcentagem na pagina relatório a cada envio do formulário para o bd
     participa = conn.execute('SELECT COUNT(*) FROM posts').fetchone()[0]
     dezoito = conn.execute('SELECT COUNT(*) FROM posts WHERE idade LIKE "de 18 a 27 anos"').fetchone()[0]
     dezoito_porc = ((dezoito / participa) * 100)
@@ -128,7 +129,7 @@ def relatorio():
     quarenta_porc = ((quarenta / participa) * 100)
     cinquenta = conn.execute('SELECT COUNT(*) FROM posts WHERE idade LIKE "mais de 55 anos"').fetchone()[0]
     cinquenta_porc = ((cinquenta / participa) * 100)
-
+# variáveis tiradas do bd para uso do if logo abaixo
     tot_opcao = conn.execute('SELECT COUNT(*) FROM posts WHERE opcao LIKE "op%"').fetchone()[0]
     whats = conn.execute('SELECT COUNT(*) FROM posts WHERE opcao LIKE "op2"').fetchone()[0]
     whats_porc = ((whats / tot_opcao) * 100)
@@ -138,7 +139,7 @@ def relatorio():
 
     sitenet = conn.execute('SELECT COUNT(*) FROM posts WHERE opcao LIKE "op3"').fetchone()[0]
     sitenet_porc = ((whats / tot_opcao) * 100)
-
+# variavel maior pega o maior valor depois compara para substituir texto e porcentagem na pagina relatório
     maior = max(pix, whats, sitenet)
     if maior == pix:
         meio_fraude = ('Pix')
@@ -149,7 +150,7 @@ def relatorio():
     else:
         meio_fraude = ('um site da internet')
         porcentagem_fraude = sitenet_porc
-# grafico relatorio
+# produz uma imagem do gráfico da relatório salvando na pasta a imagem nova a cada entrada no bd
     plt.rcParams.update({'font.size': 10})
     rotulos = ['18 a 27 anos', '28 a 39 anos', '40 a 55 anos', 'acima 55 anos']
     valores = [dezoito_porc, vinteoito_porc, quarenta_porc, cinquenta_porc]
@@ -162,7 +163,7 @@ def relatorio():
     plt.savefig('static/imagens/diagrama-pizza.png')
     plt.show()
     plt.close()
-# grafico home
+# produz uma imagem do gráfico da home salvando na pasta a imagem nova a cada entrada no bd
     plt.rcParams.update({'font.size': 10})
     rotulos = ['18 a 27 anos', '28 a 39 anos', '40 a 55 anos', 'acima 55 anos']
     valores = [dezoito_porc, vinteoito_porc, quarenta_porc, cinquenta_porc]
