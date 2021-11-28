@@ -142,10 +142,13 @@ def relatorio():
     maior = max(pix, whats, sitenet)
     if maior == pix:
         meio_fraude = ('Pix')
+        porcentagem_fraude = pix_porc
     elif maior == whats:
         meio_fraude = ('mensagens pelo aplicativo WhatsApp')
+        porcentagem_fraude = whats_porc
     else:
         meio_fraude = ('um site da internet')
+        porcentagem_fraude = sitenet_porc
 
     plt.rcParams.update({'font.size': 10})
     rotulos = ['18 a 27 anos', '28 a 39 anos', '40 a 55 anos', 'acima 55 anos']
@@ -163,7 +166,7 @@ def relatorio():
     conn.commit()
     conn.close()
     return render_template('relatorio.html', COUNT=participa, dezoito=dezoito_porc, vinteoito=vinteoito_porc,
-                           quarenta=quarenta_porc, cinquenta=cinquenta_porc, whats=whats_porc, meio_fraude=meio_fraude, maior=maior)
+                           quarenta=quarenta_porc, cinquenta=cinquenta_porc, porcentagem_fraude=porcentagem_fraude, meio_fraude=meio_fraude, maior=maior)
 
 
 @app.route('/sobre')
