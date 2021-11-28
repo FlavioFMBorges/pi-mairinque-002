@@ -4,7 +4,6 @@ from werkzeug.exceptions import abort
 import matplotlib.pyplot as plt
 
 
-
 def get_db_connection():
     conn = sqlite3.connect('database.db')
     conn.row_factory = sqlite3.Row
@@ -117,12 +116,6 @@ def ranking():
     return render_template('ranking.html')
 
 
-# @app.route('/formulario')
-# def formulario():
-#    return render_template('formulario.html')
-
-
-
 @app.route('/relatorio', methods=('GET', 'POST'))
 def relatorio():
     conn = get_db_connection()
@@ -171,6 +164,7 @@ def relatorio():
     conn.close()
     return render_template('relatorio.html', COUNT=participa, dezoito=dezoito_porc, vinteoito=vinteoito_porc,
                            quarenta=quarenta_porc, cinquenta=cinquenta_porc, whats=whats_porc, meio_fraude=meio_fraude, maior=maior)
+
 
 @app.route('/sobre')
 def sobre():
