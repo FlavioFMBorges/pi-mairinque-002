@@ -11,4 +11,4 @@ pip install -r requirements-dev.txt - instala todas as dependências
 ````
 
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/FlavioFMBorges/pi-mairinque-002/CIPI?style=plastic)
-[![Python 3](https://pyup.io/repos/github/FlavioFMBorges/curso-django/python-3-shield.svg)](https://pyup.io/repos/github/FlavioFMBorges/curso-django/)
+[![Python 3](https://pyup.io/repos/github/FlavioFMBorges/pi-mairinque-002/python-3-shield.svg)](https://pyup.io/repos/github/FlavioFMBorges/pi-mairinque-002/)
