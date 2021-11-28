@@ -149,7 +149,7 @@ def relatorio():
     else:
         meio_fraude = ('um site da internet')
         porcentagem_fraude = sitenet_porc
-
+# grafico relatorio
     plt.rcParams.update({'font.size': 10})
     rotulos = ['18 a 27 anos', '28 a 39 anos', '40 a 55 anos', 'acima 55 anos']
     valores = [dezoito_porc, vinteoito_porc, quarenta_porc, cinquenta_porc]
@@ -160,6 +160,19 @@ def relatorio():
 
     plt.pie(x=valores, labels=rotulos, autopct='%1.1f%%', colors=c, shadow=True, explode=explode)
     plt.savefig('static/imagens/diagrama-pizza.png')
+    plt.show()
+    plt.close()
+# grafico home
+    plt.rcParams.update({'font.size': 10})
+    rotulos = ['18 a 27 anos', '28 a 39 anos', '40 a 55 anos', 'acima 55 anos']
+    valores = [dezoito_porc, vinteoito_porc, quarenta_porc, cinquenta_porc]
+    c = ['#ddb9b2', '#c2c9cd', '#4a8ab7', '#525e75']
+    explode = (.1, 0, .1, 0)
+
+    plt.figure(figsize=(4, 2))
+
+    plt.pie(x=valores, labels=rotulos, autopct='%1.1f%%', colors=c, shadow=True, explode=explode)
+    plt.savefig('static/imagens/grafico.jpg')
     plt.show()
     plt.close()
 
