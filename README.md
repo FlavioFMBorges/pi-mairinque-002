@@ -1,5 +1,5 @@
 # pi-mairinque-002
-Site desenvolvido com Python e com o Framework Flask através do curso feito pela Univesp para base do Projeto Integrador
+Site desenvolvido com Python e com o Framework Flask através do curso feito pela Univesp para base do Projeto Integrador.
 Aplicação disponivel em https://pi-mairinque-002.herokuapp.com
 
 
