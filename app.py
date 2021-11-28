@@ -9,6 +9,7 @@ def get_db_connection():
     conn.row_factory = sqlite3.Row
     return conn
 
+
 # Conexão com banco de dados
 def get_post(post_id):
     conn = get_db_connection()
