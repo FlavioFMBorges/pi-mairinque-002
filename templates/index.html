@@ -2,6 +2,16 @@
 
 {% block content %}
     <h1>{% block title %}{% endblock %}</h1>
+
+    <!--Box flutuante bem-vindo -->
+    <script type="text/javascript">
+	        swal(
+            'Seja bem-vindo ao site',
+            'Portal Informativo sobre fraudes bancárias',
+            'success')
+    </script>
+    </script>
+
     <div id="bemvindo">
         <div id="esquerda">
             <h1><b><font color="#fffffff">Bem-vindo</font></b></h1>
@@ -37,6 +47,17 @@
         </div>
 
     </div><!--fecha cards -->
+    <!--Botão libras -->
+     <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+          <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
 
 {% endblock %}
 
