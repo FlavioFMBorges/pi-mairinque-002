@@ -2,11 +2,15 @@ import sqlite3
 from flask import Flask, render_template, request, url_for, flash, redirect
 from werkzeug.exceptions import abort
 import matplotlib.pyplot as plt
+import psycopg2
 
 
 def get_db_connection():
-    conn = sqlite3.connect('database.db')
-    conn.row_factory = sqlite3.Row
+    conn = psycopg2.connect(host='database-1.c05d0e8qcds2.sa-east-1.rds.amazonaws.com', database='database-1',
+                           user='postgres', password='projeto2')
+
+#conn = psycopg2.connect('database.db')
+    conn.row_factory = postgres.Row
     return conn
 
 
