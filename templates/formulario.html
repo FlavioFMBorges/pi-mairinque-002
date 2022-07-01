@@ -85,7 +85,7 @@
                value="{{ request.form['idade'] }}"></input>
     </div>
     <div class="form-group">
-        <label for="tipo">Você já passou por algum tipo de fraude bancária?(Sim/Não)</label>
+        <label for="tipo">Você já passou por algum tipo de fraude bancária? (Sim/Não)</label>
         <input type="text" name="tipo"
                placeholder="Informe o tipo de fraude (Sim ou Não)" class="form-control"
                value="{{ request.form['tipo'] }}"></input>
@@ -104,6 +104,20 @@
         <input type="RADIO" name="opcao" value="op3" placeholder="Post opcao" class="form-check-input"
             value="{{ request.form['opcao'] }}">Fraude em Site da Internet</input><br>
         </div>
+        <div class = "form-check">
+            <input type="RADIO" name="opcao" value="op4" placeholder="Post opcao" class="form-check-input"
+                value="{{ request.form['opcao'] }}">Nenhuma ou nunca passei por fraude</input><br>
+            </div>
+            <div class = "form-check">
+                <input type="RADIO" name="opcao" value="op5" placeholder="Post opcao" class="form-check-input"
+                    value="{{ request.form['opcao'] }}">Outros</input><br>
+            </div>
+    </div>
+    <div class="form-group">
+        <label for="fraude">Caso tenha selecionado a opção "Outros", especifique?</label>
+        <input type="text" name="fraude"
+               placeholder="Informe outro tipo de fraude" class="form-control"
+               value="{{ request.form['fraude'] }}"></input>
     </div>
     <div class="form-group">
         <label for="valida">Você valida informações ao efetuar uma transação bancária? (Sim/Não)</label>
@@ -112,19 +126,9 @@
                value="{{ request.form['valida'] }}"></input>
     </div>
     <div class="form-group">
-        <label for="fraude">Relate  outro tipo de fraude, caso não tenha encontrado em nenhuma das opções acima?</label>
-        <input type="text" name="fraude"
-               placeholder="Informe outro tipo de fraude" class="form-control"
-               value="{{ request.form['fraude'] }}"></input>
-    </div>
-    <div class="form-group">
-        <label for="descricao">Voce conhece alguém que já passou por uma fraude bancária diga nos qual foi o tipo?</label>
-        <textarea name="descricao" placeholder="Informe a descrição"
-                  class="form-control">{{ request.form['content'] }}</textarea>
-    </div>
-    <div class="form-group">
         <button type="submit" class="btn btn-primary">Enviar</button>
     </div>
 </form>
+
 
 {% endblock %}

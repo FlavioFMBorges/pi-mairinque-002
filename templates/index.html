@@ -2,38 +2,52 @@
 
 {% block content %}
     <h1>{% block title %}{% endblock %}</h1>
+
+    <!--Box flutuante bem-vindo -->
+    <script type="text/javascript">
+	        swal(
+            'Seja bem-vindo ao site',
+            'Portal Informativo sobre fraudes bancárias',
+            'success')
+    </script>
+    </script>
+
     <div id="bemvindo">
         <div id="esquerda">
-            <h1><b>Bem-vindo</b></h1>
-            <p>O portal permite que qualquer pessoa acesse as informações e encaminhe os relatos de fraudes que tenha sido vítima.</p>
+            <h1><b><font color="#fffffff">Bem-vindo</font></b></h1>
+            <p><font color="#fffffff">O portal permite que qualquer pessoa acesse as informações e encaminhe os relatos de fraudes que tenha sido vítima.</p>
             <p>Por meio do sistema, além de conhecer os tipos de fraudes mais comuns aplicadas contra os internautas que realizam
                 transações bancárias e compras online, terá dicas de como evitar o golpe, de contato em caso de ter sido a vítima e
-                links úteis.
+                links úteis.</font>
             </p>
         </div>
 
         <div id="direita">
-            <a href="{{url_for('relatorio')}}"><img src="../static/imagens/grafico.jpg" border="0"/></a>
+            <a href="{{url_for('relatorio')}}"><img src="../static/imagens/grafico.png" border="0"/></a>
         </div>
     </div><!--fecha bemvindo -->
 
     <div id="cards">
         <div id="card1">
+            <img src="../static/imagens/golpes.png" border="0" width="40"/>
             <p>Pesquisa recente destaca aumento de consumidores vítimas de fraudes financeiras.</p>
             <a href="{{url_for('ranking')}}">Golpes mais comuns</a>
         </div>
 
         <div id="card2">
+            <img src="../static/imagens/formulario.png" border="0" width="40"/>
             <p>Você já caiu em golpe financeiro?<br>Conte-nos como foi <br>a sua experiência?</p>
             <a href="{{url_for('formulario')}}">Formulário</a>
         </div>
 
         <div id="card3">
+            <img src="../static/imagens/contate.png" border="0" width="40"/>
             <p>Em caso de ter sido vítima<br> de fraude financeira em <br>transações online.</p>
             <a href="{{url_for('contate')}}">Contate</a>
         </div>
 
     </div><!--fecha cards -->
+
 
 {% endblock %}
 

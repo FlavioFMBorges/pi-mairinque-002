@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title style="display: none">{% block title %} {% endblock %}</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}"/>
-
+    <script src="https://unpkg.com/sweetalert2@7.12.15/dist/sweetalert2.all.js"></script>
 
 
 </head>
@@ -14,7 +14,7 @@
     
     <div id="topo">
         <div id="logo">
-            <a href="{{url_for('index')}}"><img src="../static/imagens/logo.png" border="0"/></a>
+            <a href="{{url_for('index')}}"><img src="../static/imagens/logo2.png"  border="0"/></a>
         </div>
         <nav class="menu">
             <ul>
@@ -60,6 +60,18 @@
         </div>
 
     </footer><!--fecha rodape -->
+
+    <!--Botão libras -->
+     <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+          <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
 
 </body>
 </html>

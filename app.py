@@ -67,7 +67,6 @@ def formulario():
         opcao = request.form['opcao']
         valida = request.form['valida']
         fraude = request.form['fraude']
-        descricao = request.form['descricao']
 
         if not nome:
             flash('Insira o nome completo!')
@@ -99,7 +98,7 @@ def edit(id):
         opcao = request.form['opcao']
         valida = request.form['valida']
         fraude = request.form['fraude']
-        descricao = request.form['descricao']
+
 
         if not nome:
             flash('Insira o nome!')
@@ -108,7 +107,7 @@ def edit(id):
             conn.query(
                 'UPDATE posts SET nome = ?, "email" = ?, "idade" = ?, "tipo" = ?, "opcao" = ?, "valida" = ?, "fraude" = ?, "descricao" = ?  '
                 ' WHERE id = ?',
-                (nome, email, idade, tipo, opcao, valida, fraude, descricao, id))
+                (nome, email, idade, tipo, opcao, valida, fraude, id))
             conn.commit()
             conn.close()
             return redirect(url_for('index'))
@@ -166,11 +165,11 @@ def relatorio():
     else:
         meio_fraude = ('um site da internet')
         porcentagem_fraude = sitenet_porc
-# produz uma imagem do gráfico da relatório salvando na pasta a imagem nova a cada entrada no bd
+# produz uma imagem do gráfico da relatório salvando na pasta a imagem nova a cada entrada no bd. Link para relatório
     plt.rcParams.update({'font.size': 10})
     rotulos = ['18 a 27 anos', '28 a 39 anos', '40 a 55 anos', 'acima 55 anos']
     valores = [dezoito_porc, vinteoito_porc, quarenta_porc, cinquenta_porc]
-    c = ['#ddb9b2', '#c2c9cd', '#4a8ab7', '#525e75']
+    c = ['#ddb9b2', '#f41100', '#4a8ab7', '#fcec00']
     explode = (.1, 0, .1, 0)
 
     plt.figure(figsize=(8, 8))
@@ -179,17 +178,17 @@ def relatorio():
     plt.savefig('static/imagens/diagrama-pizza.png')
     plt.show()
     plt.close()
-# produz uma imagem do gráfico da home salvando na pasta a imagem nova a cada entrada no bd
+# produz uma imagem do gráfico da home salvando na pasta a imagem nova a cada entrada no bd. Link para index.html
     plt.rcParams.update({'font.size': 10})
     rotulos = ['18 a 27 anos', '28 a 39 anos', '40 a 55 anos', 'acima 55 anos']
     valores = [dezoito_porc, vinteoito_porc, quarenta_porc, cinquenta_porc]
-    c = ['#ddb9b2', '#c2c9cd', '#4a8ab7', '#525e75']
+    c = ['#ddb9b2', '#f41100', '#4a8ab7', '#fcec00']
     explode = (.1, 0, .1, 0)
 
     plt.figure(figsize=(4, 2))
 
     plt.pie(x=valores, labels=rotulos, autopct='%1.1f%%', colors=c, shadow=True, explode=explode)
-    plt.savefig('static/imagens/grafico.jpg')
+    plt.savefig('static/imagens/grafico.png', transparent=True)
     plt.show()
     plt.close()
 
