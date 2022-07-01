@@ -54,15 +54,14 @@ def formulario():
         opcao = request.form['opcao']
         valida = request.form['valida']
         fraude = request.form['fraude']
-        descricao = request.form['descricao']
 
         if not nome:
             flash('Insira o nome completo!')
         else:
             conn = get_db_connection()
             conn.execute(
-                'INSERT INTO posts ( nome, email, idade, tipo, opcao, valida, fraude, descricao) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
-                (nome, email, idade, tipo, opcao, valida, fraude, descricao))
+                'INSERT INTO posts ( nome, email, idade, tipo, opcao, valida, fraude) VALUES (?, ?, ?, ?, ?, ?, ?)',
+                (nome, email, idade, tipo, opcao, valida, fraude))
             conn.commit()
             conn.close()
             if nome:
@@ -84,16 +83,16 @@ def edit(id):
         opcao = request.form['opcao']
         valida = request.form['valida']
         fraude = request.form['fraude']
-        descricao = request.form['descricao']
+
 
         if not nome:
             flash('Insira o nome!')
         else:
             conn = get_db_connection()
             conn.execute(
-                'UPDATE posts SET nome = ?, "email" = ?, "idade" = ?, "tipo" = ?, "opcao" = ?, "valida" = ?, "fraude" = ?, "descricao" = ?  '
+                'UPDATE posts SET nome = ?, "email" = ?, "idade" = ?, "tipo" = ?, "opcao" = ?, "valida" = ?, "fraude" = ?'
                 ' WHERE id = ?',
-                (nome, email, idade, tipo, opcao, valida, fraude, descricao, id))
+                (nome, email, idade, tipo, opcao, valida, fraude, id))
             conn.commit()
             conn.close()
             return redirect(url_for('index'))
@@ -155,7 +154,7 @@ def relatorio():
     plt.rcParams.update({'font.size': 10})
     rotulos = ['18 a 27 anos', '28 a 39 anos', '40 a 55 anos', 'acima 55 anos']
     valores = [dezoito_porc, vinteoito_porc, quarenta_porc, cinquenta_porc]
-    c = ['#ddb9b2', '#c2c9cd', '#4a8ab7', '#525e75']
+    c = ['#ddb9b2', '#f41100', '#4a8ab7', '#fcec00']
     explode = (.1, 0, .1, 0)
 
     plt.figure(figsize=(8, 8))
@@ -168,7 +167,7 @@ def relatorio():
     plt.rcParams.update({'font.size': 10})
     rotulos = ['18 a 27 anos', '28 a 39 anos', '40 a 55 anos', 'acima 55 anos']
     valores = [dezoito_porc, vinteoito_porc, quarenta_porc, cinquenta_porc]
-    c = ['#ddb9b2', '#f41100', '#4a8ab7', '#525e75']
+    c = ['#ddb9b2', '#f41100', '#4a8ab7', '#fcec00']
     explode = (.1, 0, .1, 0)
 
     plt.figure(figsize=(4, 2))
