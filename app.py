@@ -2,23 +2,33 @@ import sqlite3
 from flask import Flask, render_template, request, url_for, flash, redirect
 from werkzeug.exceptions import abort
 import matplotlib.pyplot as plt
-
+import pymysql
+import pymysql.cursors
 
 def get_db_connection():
-    conn = sqlite3.connect('database.db')
-    conn.row_factory = sqlite3.Row
+    conn = pymysql.connect(
+        host= 'database-2.c05d0e8qcds2.sa-east-1.rds.amazonaws.com',
+        port = 3306,
+        user ='admin',
+        password ='projeto2',
+        cursorclass=pymysql.cursors.DictCursor,
+        db='sys'
+        )
     return conn
-
 
 # Conexão com banco de dados
 def get_post(post_id):
-    conn = get_db_connection()
-    post = conn.execute('SELECT * FROM posts WHERE id = ?',
+    x = get_db_connection()
+    with x:
+        with x.cursor() as conn:
+            post = conn.query('SELECT * FROM posts WHERE id = ?',
                         (post_id,)).fetchone()
-    conn.close()
-    if post is None:
-        abort(404)
-    return post
+            conn.close()
+            if post is None:
+                abort(404)
+            return post
+    x.commit()
+
 
 
 app = Flask(__name__, static_folder='static', template_folder='templates')
@@ -28,10 +38,14 @@ app.config['SECRET_KEY'] = 'your secret key'
 @app.route('/index')
 @app.route('/')
 def index():
-    conn = get_db_connection()
-    posts = conn.execute('SELECT * FROM posts').fetchall()
-    conn.close()
-    return render_template('index.html', posts=posts)
+    x = get_db_connection()
+    with x:
+        with x.cursor() as conn:
+            conn = get_db_connection()
+            print(conn)
+            posts = conn.query('SELECT * FROM posts')
+            conn.close()
+            return render_template('index.html', posts=posts)
 
 
 
@@ -58,16 +72,18 @@ def formulario():
         if not nome:
             flash('Insira o nome completo!')
         else:
-            conn = get_db_connection()
-            conn.execute(
-                'INSERT INTO posts ( nome, email, idade, tipo, opcao, valida, fraude, descricao) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
-                (nome, email, idade, tipo, opcao, valida, fraude, descricao))
-            conn.commit()
-            conn.close()
-            if nome:
-                flash(
-                    'Muito obrigada por preencher nossa pesquisa. Concerteza você estará ajudando alguma pessoa em algum lugar do Brasil!')
-            return redirect(url_for('formulario'))
+            x = get_db_connection()
+            with x:
+                with x.cursor() as connx:
+                    connx.execute(
+                        'INSERT INTO posts ( nome, email, idade, tipo, opcao, valida, fraude, descricao) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+                        (nome, email, idade, tipo, opcao, valida, fraude, descricao))
+                    connx.commit()
+                    connx.close()
+                    if nome:
+                        flash(
+                            'Muito obrigada por preencher nossa pesquisa. Concerteza você estará ajudando alguma pessoa em algum lugar do Brasil!')
+                    return redirect(url_for('formulario'))
     return render_template('formulario.html')
 
 
@@ -89,7 +105,7 @@ def edit(id):
             flash('Insira o nome!')
         else:
             conn = get_db_connection()
-            conn.execute(
+            conn.query(
                 'UPDATE posts SET nome = ?, "email" = ?, "idade" = ?, "tipo" = ?, "opcao" = ?, "valida" = ?, "fraude" = ?, "descricao" = ?  '
                 ' WHERE id = ?',
                 (nome, email, idade, tipo, opcao, valida, fraude, descricao, id))
@@ -104,7 +120,7 @@ def edit(id):
 def delete(id):
     post = get_post(id)
     conn = get_db_connection()
-    conn.execute('DELETE FROM posts WHERE id = ?', (id,))
+    conn.query('DELETE FROM posts WHERE id = ?', (id,))
     conn.commit()
     conn.close()
     flash('"{}" was successfully deleted!'.format(post['nome']))
@@ -120,24 +136,24 @@ def ranking():
 def relatorio():
     conn = get_db_connection()
 # variaveis filtradas do bd para substituir porcentagem na pagina relatório a cada envio do formulário para o bd
-    participa = conn.execute('SELECT COUNT(*) FROM posts').fetchone()[0]
-    dezoito = conn.execute('SELECT COUNT(*) FROM posts WHERE idade LIKE "de 18 a 27 anos"').fetchone()[0]
+    participa = conn.query('SELECT COUNT(*) FROM posts') or 0
+    dezoito = conn.query('SELECT COUNT(*) FROM posts WHERE idade LIKE "de 18 a 27 anos"') or 0
     dezoito_porc = ((dezoito / participa) * 100)
-    vinteoito = conn.execute('SELECT COUNT(*) FROM posts WHERE idade LIKE "de 28 a 39 anos"').fetchone()[0]
+    vinteoito = conn.query('SELECT COUNT(*) FROM posts WHERE idade LIKE "de 28 a 39 anos"') or 0
     vinteoito_porc = ((vinteoito / participa) * 100)
-    quarenta = conn.execute('SELECT COUNT(*) FROM posts WHERE idade LIKE "de 40 a 55 anos"').fetchone()[0]
+    quarenta = conn.query('SELECT COUNT(*) FROM posts WHERE idade LIKE "de 40 a 55 anos"') or 0
     quarenta_porc = ((quarenta / participa) * 100)
-    cinquenta = conn.execute('SELECT COUNT(*) FROM posts WHERE idade LIKE "mais de 55 anos"').fetchone()[0]
+    cinquenta = conn.query('SELECT COUNT(*) FROM posts WHERE idade LIKE "mais de 55 anos"') or 0
     cinquenta_porc = ((cinquenta / participa) * 100)
 # variáveis tiradas do bd para uso do if logo abaixo
-    tot_opcao = conn.execute('SELECT COUNT(*) FROM posts WHERE opcao LIKE "op%"').fetchone()[0]
-    whats = conn.execute('SELECT COUNT(*) FROM posts WHERE opcao LIKE "op2"').fetchone()[0]
+    tot_opcao = conn.query('SELECT COUNT(*) FROM posts WHERE opcao LIKE "op%"') or 0
+    whats = conn.query('SELECT COUNT(*) FROM posts WHERE opcao LIKE "op2"') or 0
     whats_porc = ((whats / tot_opcao) * 100)
 
-    pix = conn.execute('SELECT COUNT(*) FROM posts WHERE opcao LIKE "op1"').fetchone()[0]
+    pix = conn.query('SELECT COUNT(*) FROM posts WHERE opcao LIKE "op1"') or 0
     pix_porc = ((whats / tot_opcao) * 100)
 
-    sitenet = conn.execute('SELECT COUNT(*) FROM posts WHERE opcao LIKE "op3"').fetchone()[0]
+    sitenet = conn.query('SELECT COUNT(*) FROM posts WHERE opcao LIKE "op3"') or 0
     sitenet_porc = ((whats / tot_opcao) * 100)
 # variavel maior pega o maior valor depois compara para substituir texto e porcentagem na pagina relatório
     maior = max(pix, whats, sitenet)
