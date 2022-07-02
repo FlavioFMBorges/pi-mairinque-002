@@ -1,38 +1,10 @@
 from flask import Flask, render_template, request, url_for, flash, redirect
 from werkzeug.exceptions import abort
 import matplotlib.pyplot as plt
-import pymysql
-import pymysql.cursors
-
-def get_db_connection():
-    conn = pymysql.connect(
-        host= 'database-2.c05d0e8qcds2.sa-east-1.rds.amazonaws.com',
-        port = 3306,
-        user ='admin',
-        password ='projeto2',
-        cursorclass=pymysql.cursors.DictCursor,
-        db='sys'
-        )
-    return conn
-
-# Conexão com banco de dados
-def get_post(post_id):
-    x = get_db_connection()
-    with x:
-        with x.cursor() as conn:
-            post = conn.query('SELECT * FROM posts WHERE id = ?',
-                        (post_id,)).fetchone()
-            conn.close()
-            if post is None:
-                abort(404)
-            return post
-    x.commit()
-
-
+from init_db import get_db_connection
+from constantes import paleta_cores, rotulos
 
 app = Flask(__name__, static_folder='static', template_folder='templates')
-app.config['SECRET_KEY'] = 'your secret key'
-
 
 @app.route('/index')
 @app.route('/')
@@ -46,15 +18,17 @@ def index():
             conn.close()
             return render_template('index.html', posts=posts)
 
+@app.route('/ranking')
+def ranking():
+    return render_template('ranking.html')
 
+@app.route('/sobre')
+def sobre():
+    return render_template('sobre.html')
 
-
-
-@app.route('/<int:post_id>')
-def post(post_id):
-    post = get_post(post_id)
-    return render_template('post.html', post=post)
-
+@app.route('/contate')
+def contate():
+    return render_template('contate.html')
 
 @app.route('/formulario', methods=('GET', 'POST'))
 def formulario():
@@ -79,55 +53,9 @@ def formulario():
                 x.commit()
             if nome:
                 flash(
-                    'Muito obrigada por preencher nossa pesquisa. Concerteza você estará ajudando alguma pessoa em algum lugar do Brasil!')
+                    'Muito obrigada por preencher nossa pesquisa. Com certeza você estará ajudando alguma pessoa em algum lugar do Brasil!')
             return redirect(url_for('formulario'))
     return render_template('formulario.html')
-
-
-@app.route('/<int:id>/edit', methods=('GET', 'POST'))
-def edit(id):
-    post = get_post(id)
-
-    if request.method == 'POST':
-        nome = request.form['nome']
-        email = request.form['email']
-        idade = request.form['idade']
-        tipo = request.form['tipo']
-        opcao = request.form['opcao']
-        valida = request.form['valida']
-        fraude = request.form['fraude']
-
-
-        if not nome:
-            flash('Insira o nome!')
-        else:
-            conn = get_db_connection()
-            conn.query(
-                'UPDATE posts SET nome = ?, "email" = ?, "idade" = ?, "tipo" = ?, "opcao" = ?, "valida" = ?, "fraude" = ?, "descricao" = ?  '
-                ' WHERE id = ?',
-                (nome, email, idade, tipo, opcao, valida, fraude, id))
-            conn.commit()
-            conn.close()
-            return redirect(url_for('index'))
-
-    return render_template('edit.html', post=post)
-
-
-@app.route('/<int:id>/delete', methods=('POST',))
-def delete(id):
-    post = get_post(id)
-    conn = get_db_connection()
-    conn.query('DELETE FROM posts WHERE id = ?', (id,))
-    conn.commit()
-    conn.close()
-    flash('"{}" was successfully deleted!'.format(post['nome']))
-    return redirect(url_for('index'))
-
-
-@app.route('/ranking')
-def ranking():
-    return render_template('ranking.html')
-
 
 @app.route('/relatorio', methods=('GET', 'POST'))
 def relatorio():
@@ -165,9 +93,8 @@ def relatorio():
         porcentagem_fraude = sitenet_porc
 # produz uma imagem do gráfico da relatório salvando na pasta a imagem nova a cada entrada no bd. Link para relatório
     plt.rcParams.update({'font.size': 10})
-    rotulos = ['18 a 27 anos', '28 a 39 anos', '40 a 55 anos', 'acima 55 anos']
     valores = [dezoito_porc, vinteoito_porc, quarenta_porc, cinquenta_porc]
-    c = ['#ddb9b2', '#f41100', '#4a8ab7', '#fcec00']
+    c = paleta_cores
     explode = (.1, 0, .1, 0)
 
     plt.figure(figsize=(8, 8))
@@ -178,9 +105,8 @@ def relatorio():
     plt.close()
 # produz uma imagem do gráfico da home salvando na pasta a imagem nova a cada entrada no bd. Link para index.html
     plt.rcParams.update({'font.size': 10})
-    rotulos = ['18 a 27 anos', '28 a 39 anos', '40 a 55 anos', 'acima 55 anos']
     valores = [dezoito_porc, vinteoito_porc, quarenta_porc, cinquenta_porc]
-    c = ['#ddb9b2', '#f41100', '#4a8ab7', '#fcec00']
+    c = paleta_cores
     explode = (.1, 0, .1, 0)
 
     plt.figure(figsize=(4, 2))
@@ -194,16 +120,6 @@ def relatorio():
     conn.close()
     return render_template('relatorio.html', COUNT=participa, dezoito=dezoito_porc, vinteoito=vinteoito_porc,
                            quarenta=quarenta_porc, cinquenta=cinquenta_porc, porcentagem_fraude=porcentagem_fraude, meio_fraude=meio_fraude, maior=maior)
-
-
-@app.route('/sobre')
-def sobre():
-    return render_template('sobre.html')
-
-
-@app.route('/contate')
-def contate():
-    return render_template('contate.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
