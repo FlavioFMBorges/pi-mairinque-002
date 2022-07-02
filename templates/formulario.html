@@ -2,69 +2,6 @@
 
 {% block content %}
 <h1><center> Formulário </center></h1>
-
-<form action="#" method="post">
-    <!-- Campo do nome com legenda "nome" e css de classe "campo" -->
-    <div class="campo">
-        <input type="text" style="width: 26em" name="nome" id="name" required placeholder="Digite seu nome" value="{{ request.form['nome'] }}">
-    </div>
-    <div class="campo">
-        <input type="number" style="width: 26em" name="idade" id="idade" required placeholder="Idade" value="{{ request.form['idade'] }}">
-    </div>
-<!-- Campo de email com-->
-<div class="campo">
-    <input type="email" style="width: 26em" name="email" id="email" required placeholder="E-mail" value="{{ request.form['email'] }}">
-</div>
-<br>
-<div class="campo">
-    <label><strong>Você passou por algum timpo de fraude bancácia?</strong></label>
-    <input type="radio" name="quest" value="Sim" checked value="{{ request.form['fraude'] }}">Sim
-    <input type="radio" name="quest" value="Nao" value="{{ request.form['fraude'] }}">Não
-</div>
-<br>
-<!-- Há verificação de informações:-->
-<div class="campo">
-    <label><strong>Você verifica as informações digitadas antes de concluir uma transação bancária?</strong></label>
-    <label>(Exemplo: confere se os dados do destinatário são mesmo da pessoa)</label>
-    <input type="radio" name="info" value="Sim" checked>Sim
-    <input type="radio" name="info" value="Nao" >Não
-</div>
-<br>
-<!-- Tipos de fraudes selecionáveis (radio button) e css de classe "campo" -->
-<div class="campo">
-    <label><strong>Qual tipo de fraude?</strong></label>
-    <label for="fraudPix">
-        <input type="radio" name="fraudPix" value="Pix" checked  value="{{ request.form['opcao'] }}">>Fraude por pix
-    </label>
-    <label for="fraudZap">
-        <input type="radio" name="fraudZap" value="MSN"  value="{{ request.form['opcao'] }}">>Fraude por Mensagem ou por WhatsApp
-    </label>
-    <label for="fraudNenhum">
-        <input type="radio" name="fraudNenhum" value="none"  value="{{ request.form['opcao'] }}">>Nenhuma ou nunca passer por fraude
-    </label>
-    <label for="fraudOutros">
-        Outros
-    </label>
-    <input type="radio" name="fraudOutros" value="outros"  value="{{ request.form['opcao'] }}">
-</div>
-<br>
-<!-- Caixa de texto -->
-<div class="campo">
-    <br>
-    <label for="experiencia"><strong>Caso tenha selecionado "outros" especifique: </strong></label>
-    <textarea rows="6" style="width: 26em" id="outros" name="outros"></textarea>
-</div>
-<br>
-<!-- Caixa de texto -->
-<div class="campo">
-    <br>
-    <label for="experiencia"><strong>Você já passou por uma fraude ou conhece alguém que já passou por uma fraude bancária? Diga-nos, qual foi o tipo?</strong></label>
-    <textarea rows="6" style="width: 26em" id="experiencia" name="experiencia"></textarea>
-</div>
-<input type="submit" class="botao" value="Enviar"/><br><br><br>
-</form>
-
-
 <form method="post">
     <div class="form-group">
         <label for="nome">Nome Completo</label>
@@ -91,7 +28,7 @@
                value="{{ request.form['tipo'] }}"></input>
     </div>
     <div class="form-group">
-         <label>Qual foi o tipo de fraude?</label><br>
+         <label for="opcao1">Qual foi o tipo de fraude?</label><br>
          <div class = "form-check">
         <input type="RADIO" name="opcao" value="op1" placeholder="Post opcao" class="form-check-input"
             value="{{ request.form['opcao'] }}">Fraude por PIX </input><br>
@@ -129,6 +66,5 @@
         <button type="submit" class="btn btn-primary">Enviar</button>
     </div>
 </form>
-
 
 {% endblock %}

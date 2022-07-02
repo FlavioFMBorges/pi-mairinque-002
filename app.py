@@ -75,14 +75,13 @@ def formulario():
             with x:
                 with x.cursor() as connx:
                     connx.execute(
-                        'INSERT INTO posts ( nome, email, idade, tipo, opcao, valida, fraude, descricao) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
-                        (nome, email, idade, tipo, opcao, valida, fraude, descricao))
-                    connx.commit()
-                    connx.close()
-                    if nome:
-                        flash(
-                            'Muito obrigada por preencher nossa pesquisa. Concerteza você estará ajudando alguma pessoa em algum lugar do Brasil!')
-                    return redirect(url_for('formulario'))
+                        'INSERT INTO posts ( nome, email, idade, tipo, opcao, valida, fraude) VALUES (%s, %s, %s, %s, %s, %s, %s)',
+                        (nome, email, idade, tipo, opcao, valida, fraude))
+                x.commit()
+            if nome:
+                flash(
+                    'Muito obrigada por preencher nossa pesquisa. Concerteza você estará ajudando alguma pessoa em algum lugar do Brasil!')
+            return redirect(url_for('formulario'))
     return render_template('formulario.html')
 
 
