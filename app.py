@@ -66,7 +66,7 @@ def relatorio():
     dezoito_porc = ((dezoito / participa) * 100)
     vinteoito = conn.query('SELECT COUNT(*) FROM posts WHERE idade BETWEEN 28 AND 39') or 0
     vinteoito_porc = ((vinteoito / participa) * 100)
-    quarenta = conn.query('SELECT COUNT(*) FROM posts WHERE idade BETWEEN 40 AND 55"') or 0
+    quarenta = conn.query('SELECT COUNT(*) FROM posts WHERE idade BETWEEN 40 AND 55') or 0
     quarenta_porc = ((quarenta / participa) * 100)
     cinquenta = conn.query('SELECT COUNT(*) FROM posts WHERE idade > 55') or 0
     cinquenta_porc = ((cinquenta / participa) * 100)
@@ -94,24 +94,22 @@ def relatorio():
 # produz uma imagem do gráfico da relatório salvando na pasta a imagem nova a cada entrada no bd. Link para relatório
     plt.rcParams.update({'font.size': 10})
     valores = [dezoito_porc, vinteoito_porc, quarenta_porc, cinquenta_porc]
-    c = paleta_cores
     explode = (.1, 0, .1, 0)
 
     plt.figure(figsize=(8, 8))
 
-    plt.pie(x=valores, labels=rotulos, autopct='%1.1f%%', colors=c, shadow=True, explode=explode)
+    plt.pie(x=valores, labels=rotulos, autopct='%1.1f%%', colors=paleta_cores, shadow=True, explode=explode)
     plt.savefig('static/imagens/diagrama-pizza.png')
     plt.show()
     plt.close()
 # produz uma imagem do gráfico da home salvando na pasta a imagem nova a cada entrada no bd. Link para index.html
     plt.rcParams.update({'font.size': 10})
     valores = [dezoito_porc, vinteoito_porc, quarenta_porc, cinquenta_porc]
-    c = paleta_cores
     explode = (.1, 0, .1, 0)
 
     plt.figure(figsize=(4, 2))
 
-    plt.pie(x=valores, labels=rotulos, autopct='%1.1f%%', colors=c, shadow=True, explode=explode)
+    plt.pie(x=valores, labels=rotulos, autopct='%1.1f%%', colors=paleta_cores, shadow=True, explode=explode)
     plt.savefig('static/imagens/grafico.png', transparent=True)
     plt.show()
     plt.close()
