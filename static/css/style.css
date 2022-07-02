@@ -1,7 +1,7 @@
 @charset "utf-8";
 /* CSS Document */
 
-*{ 	
+*{
 	margin:0;
 	padding:0;
 }
@@ -12,120 +12,12 @@ body{
 	background:#ffffff;
 }
 
-/* Chrome e outros */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-/* Firefox */
-input[type=number] {
-  -moz-appearance: textfield;
-}
-
-
-/*--- formulario */
-
-.container{
-    text-align: center;
-}
-section img{
-    width: 250px;
-   height: 250px;
-   margin: auto 40px
-}
-
-#check{
-    display: inline-block;
-}
-
-/* Elementos de tags <body>, <input>, <Select>, <textarea> e <button> */
-.container input, select, textarea, button {
-    font-family: 'Calibri', 'Courier New', Courier, monospace;
-    font-size: 18px;
-    color: #4373c5;
-    border-radius: 5px;
-}
-
-/* Elementos de classe "grupo" nos estados das pseudoclasses "before" e "after" */
-.grupo:before, .grupo:after {
-    display: table;
-}
-
-/* Elementos de classe "grupo" no estado da pseudoclasse "after" */
-.grupo:after {
-    clear: both;
-}
-
-/* Elementos de classe "campo" */
-.campo {
-    margin-bottom: 1em;
-}
-
-/* Elementos de classe "campo" de tag <label> */
-.campo label {
-    margin-bottom: 0.2em;
-    color: #4373c5;
-    display: block;
-}
-
-/* Elementos de classe "campo" ou "grupo" de tag <fieldset> */
-fieldset.grupo .campo {
-    margin-right: 1em;
-}
-
-/* Elementos de classe "campo" das tags <input> com atributo text e email, da tag <select> e da tag <textarea>*/
-.campo input[type="text"], .campo input[type="email"], .campo input[type="number"], .campo select, .campo textarea {
-    padding: 0.2em;
-    border: 1px solid #4373c5;
-    box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
-}
-
-/* Elementos de classe "campo" de tag <select> e <option>*/
-.campo select option {
-    padding-right: 1em;
-}
-
-/* Elemento de classe "campo" com tag <input>, <select> e <textarea> tocas com estado da pseudoclasse "focus"*/
-.campo input:focus, .campo select:focus, .campo textarea:focus {
-    background: #E0E0F8;
-}
-
-/* Elemento de classe "botao" */
-.botao {
-    font-size: 1.2em;
-    border: 0;
-    margin-bottom: 1em;
-    color:#000;
-    box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
-    width: 150px;
-}
-
-/* Elemento de classe "botao" com o estado da pseudoclasse "hover" */
-.botao:hover {
-    background:#124386;
-    color:#fff;
-    box-shadow: inset 2px 2px 2px rgba(0,0,0,0.2);
-    text-shadow: none;
-    width: 150px;
-}
-
-/* Elementos de classe botão e de tag <select> */
-.botao, select{
-    cursor: pointer;
-    width: 150px;
-}
-/*---------------------*/
-
-
-
-
 @media only screen and (min-width: 1150px){
     #topo{
         width: 100%;
         height: 150px;
-        border-bottom: 5px solid #4373c5;
-        background-color: #fff;
+        border-bottom: 5px solid #23498a;
+        background-color: #d9d9d9;
     }
     #logo{
         width: 40%;
@@ -133,7 +25,7 @@ fieldset.grupo .campo {
         float: left;
         text-align: left;
     }
-    
+
         #logo img{
             margin-left: 16%;
             margin-top: 27px;
@@ -149,47 +41,46 @@ fieldset.grupo .campo {
         margin-right: 7%;
         margin-top: 100px;
       }
-    
+
     .menu li{
         display: inline;
         margin: 10px 0px 10px 10px;
         font-family: 'Calibri', 'Courier New', Courier, monospace;
-        border: 1px solid #4373c5;
-        border-radius: 15px;
+        border: 1px solid #20427f;
         padding: 5px;
     }
-    
+
         .menu li:hover{
-            background-color: #4373c5;
+            background-color: #20427f;
             text-decoration: none;
         }
-    
+
     .menu a{
         text-decoration: none;
         color: black;
         font-size: 18px;
         font-weight: bolder;
     }
-    
+
         .menu a:hover{
-            color:#ffffff; 
+            color:#ffffff;
         }
-    
+
     #bemvindo{
         width: 100%;
         height: 280px;
-        background-image: url(/static/imagens/bg.jpg);
+        background-image: url(../imagens/bg.jpg);
     }
-    
+
     #esquerda{
         width: 50%;
         height: 100%;
         float: left;
     }
-    
+
         #esquerda p{
             font-family: 'Calibri', 'Courier New', Courier, monospace;
-            color:rgb(32, 32, 32);
+            color:#fff;
             font-size: 18px;
             text-align: justify;
             margin-left: 14%;
@@ -199,24 +90,24 @@ fieldset.grupo .campo {
 
         #esquerda h1{
             font-family: 'Calibri', 'Courier New', Courier, monospace;
-            color:rgb(27, 27, 27);
+            color:#fff;
             text-align: justify;
             margin-left: 14%;
             margin-top: 2%;
         }
-    
+
     #direita{
         width: 50%;
         height: 100%;
         float: right;
     }
-    
+
         #direita img{
             margin-right: 14%;
             margin-top: 30px;
             float: right;
         }
-    
+
     #esquerdarelatorio{
         width: 50%;
         float: left;
@@ -239,53 +130,56 @@ fieldset.grupo .campo {
             margin:0 14% 30px 0;
             width: 80%;
         }
-    
-    
+
+
     #cards{
         width: 100%;
         height: 280px;
     }
-    
+
         #cards p{
             font-family: 'Calibri', 'Courier New', Courier, monospace;
             color:#000;
             text-align: center;
             font-weight: bold;
-            margin: 10px 0 30px 0;
+            margin: 10px 0 50px 0;
         }
-    
+
         #cards a{
             text-decoration: none;
             color: #fff;
             width: 80px;
             height: 20px;
             background-color: #4373c5;
-            border-radius: 15px;
+            border-radius: 7px;
             padding: 5px 10px 5px 10px;
             font-size: 120%;
         }
-    
+
             #cards a:hover{
                 background-color: #20427f;
             }
-        
+
     #card1{
         width: 19%;
         height: 180px;
+        border: 2px solid #90acdb;
         margin: 50px 7% 0 7%;
         float: left;
     }
-    
+
     #card2{
         width: 20%;
         height: 180px;
+        border: 2px solid #90acdb;
         float: left;
         margin: 50px 7% 0 7%;
     }
-    
+
     #card3{
         width: 19%;
         height: 180px;
+        border: 2px solid #90acdb;
         margin: 50px 7% 0 0;
         float: right;
     }
@@ -332,7 +226,7 @@ fieldset.grupo .campo {
         }
 
     footer{
-        background-color: #000;
+        background-color: #d9d9d9;
         width: 100%;
         height: 150px;
         padding-top: 2%;
@@ -393,7 +287,7 @@ fieldset.grupo .campo {
 
     #formulario div.box {
         margin:0 auto;
-        width:600px;
+        width:500px;
         background:#124386;
         position:relative;
         top:50px;
@@ -418,7 +312,7 @@ fieldset.grupo .campo {
         padding:10px 0 10px 0;
     }
 
-    #formulario div.box span {
+    #formulario div.box label span {
         display: block;
         color:#ffffff;
         font-size:12px;
@@ -466,7 +360,7 @@ fieldset.grupo .campo {
     #formulario div.box .button:hover{
         background-color: #20427f;
     }
-    
+
 }
 
 
@@ -475,8 +369,8 @@ fieldset.grupo .campo {
     #topo{
         width: 100%;
         height: 230px;
-        border-bottom: 5px solid #4373c5;
-        background-color: #fff;
+        border-bottom: 5px solid #23498a;
+        background-color: #d9d9d9;
     }
     #logo{
         width: 100%;
@@ -494,20 +388,20 @@ fieldset.grupo .campo {
         font-family:Arial, Helvetica, sans-serif;
         font-size: 20px;
     }
-    
-    
+
+
         #menu-sanfona ul {
             margin: 0;
             padding: 0;
             list-style: none;
             width: 102px;
-            
+
         }
-        
+
         #menu-sanfona ul li {
             position: relative;
         }
-        
+
         #menu-sanfona li ul {
             position: absolute;
             left: 99px;
@@ -517,23 +411,23 @@ fieldset.grupo .campo {
             display: none;
             z-index:999;
         }
-        
+
         #menu-sanfona li:hover ul { display: block; }
-        
-        
+
+
         #menu-sanfona ul li a {
             display: block;
             text-decoration: none;
-            background: #fff;
+            background: #d9d9d9;
             border-bottom: 0;
             text-decoration:none;
             font-family:Arial, Helvetica, sans-serif;
             font-size:20px;
             font-weight:bolder;
-            color:#4373c5;		
+            color:#23498a;
         }
         #teste{ padding:5px;
-            border:1px solid #4373c5;
+            border:1px solid #23498a;
         }
         #menu-sanfona ul li a:hover{
             background-color:#CCC;
@@ -541,15 +435,14 @@ fieldset.grupo .campo {
     #bemvindo{
         width: 100%;
         height: 470px;
-        background-image: url(/static/imagens/bg.jpg);
+        background-image: url(../imagens/bg.jpg);
     }
-
 
     #esquerda{
         width: 100%;
         height: 260px;
     }
-    
+
         #esquerda p{
             font-family:Arial, Helvetica, sans-serif;
             color:#fff;
@@ -562,7 +455,7 @@ fieldset.grupo .campo {
             font-family: 'Calibri', 'Courier New', Courier, monospace;
             color:#fff;
         }
-    
+
     #direita{
         width: 100%;
         height: 210px;
@@ -586,7 +479,7 @@ fieldset.grupo .campo {
         margin: 0 7% 20px 7%;
 
     }
-    
+
     #cards{
         width: 100%;
         height: 625px;
@@ -594,45 +487,48 @@ fieldset.grupo .campo {
         margin: 0px auto;
         padding: 10px 0 10px 0;
     }
-    
+
         #cards p{
             font-family:Arial, Helvetica, sans-serif;
             color:#000;
             font-size: 16px;
             text-align: center;
             font-weight: bold;
-            margin: 10px 0 30px 0;
+            margin: 10px 0 50px 0;
         }
-    
+
         #cards a{
             font-family:Arial, Helvetica, sans-serif;
             text-decoration: none;
             color: #fff;
             background-color: #4373c5;
-            border-radius: 15px;
+            border-radius: 7px;
             padding: 5px 10px 5px 10px;
             font-size: 16px;
         }
-    
+
             #cards a:hover{
                 background-color: #20427f;
             }
-        
+
     #card1{
         width: 70%;
         height: 200px;
+        border: 2px solid #90acdb;
         margin:0px auto;
     }
-    
+
     #card2{
         width: 70%;
         height: 200px;
+        border: 2px solid #90acdb;
         margin:0px auto;
     }
-    
+
     #card3{
         width: 70%;
         height: 200px;
+        border: 2px solid #90acdb;
         margin:0px auto;
     }
 
@@ -677,7 +573,7 @@ fieldset.grupo .campo {
         }
 
     footer{
-        background-color: #000;
+        background-color: #d9d9d9;
         width: 100%;
         height: 270px;
         padding-top: 2%;
@@ -700,7 +596,7 @@ fieldset.grupo .campo {
             color:#000;
             text-decoration: none;
         }
-    
+
     #links{
         width:100%;
     }

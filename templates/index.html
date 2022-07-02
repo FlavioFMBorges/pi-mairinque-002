@@ -2,28 +2,18 @@
 
 {% block content %}
     <h1>{% block title %}{% endblock %}</h1>
-
-    <!--Box flutuante bem-vindo -->
-    <script type="text/javascript">
-	        swal(
-            'Seja bem-vindo ao site',
-            'Portal Informativo sobre fraudes bancárias',
-            'success')
-    </script>
-    </script>
-
     <div id="bemvindo">
         <div id="esquerda">
-            <h1><b><font color="#fffffff">Bem-vindo</font></b></h1>
-            <p><font color="#fffffff">O portal permite que qualquer pessoa acesse as informações e encaminhe os relatos de fraudes que tenha sido vítima.</p>
+            <h1><b>Bem-vindo</b></h1>
+            <p>O portal permite que qualquer pessoa acesse as informações e encaminhe os relatos de fraudes que tenha sido vítima.</p>
             <p>Por meio do sistema, além de conhecer os tipos de fraudes mais comuns aplicadas contra os internautas que realizam
                 transações bancárias e compras online, terá dicas de como evitar o golpe, de contato em caso de ter sido a vítima e
-                links úteis.</font>
+                links úteis.
             </p>
         </div>
 
         <div id="direita">
-            <a href="{{url_for('relatorio')}}"><img src="../static/imagens/grafico.png" border="0"/></a>
+            <a href="{{url_for('relatorio')}}"><img src="../static/imagens/grafico2.png" border="0"/></a>
         </div>
     </div><!--fecha bemvindo -->
 
@@ -47,7 +37,6 @@
         </div>
 
     </div><!--fecha cards -->
-
 
 {% endblock %}
 
