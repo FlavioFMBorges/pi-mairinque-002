@@ -134,13 +134,13 @@ def relatorio():
     conn = get_db_connection()
 # variaveis filtradas do bd para substituir porcentagem na pagina relatório a cada envio do formulário para o bd
     participa = conn.query('SELECT COUNT(*) FROM posts') or 0
-    dezoito = conn.query('SELECT COUNT(*) FROM posts WHERE idade LIKE "de 18 a 27 anos"') or 0
+    dezoito = conn.query('SELECT COUNT(*) FROM posts WHERE idade BETWEEN 18 AND 27') or 0
     dezoito_porc = ((dezoito / participa) * 100)
-    vinteoito = conn.query('SELECT COUNT(*) FROM posts WHERE idade LIKE "de 28 a 39 anos"') or 0
+    vinteoito = conn.query('SELECT COUNT(*) FROM posts WHERE idade BETWEEN 28 AND 39') or 0
     vinteoito_porc = ((vinteoito / participa) * 100)
-    quarenta = conn.query('SELECT COUNT(*) FROM posts WHERE idade LIKE "de 40 a 55 anos"') or 0
+    quarenta = conn.query('SELECT COUNT(*) FROM posts WHERE idade BETWEEN 40 AND 55"') or 0
     quarenta_porc = ((quarenta / participa) * 100)
-    cinquenta = conn.query('SELECT COUNT(*) FROM posts WHERE idade LIKE "mais de 55 anos"') or 0
+    cinquenta = conn.query('SELECT COUNT(*) FROM posts WHERE idade > 55') or 0
     cinquenta_porc = ((cinquenta / participa) * 100)
 # variáveis tiradas do bd para uso do if logo abaixo
     tot_opcao = conn.query('SELECT COUNT(*) FROM posts WHERE opcao LIKE "op%"') or 0
