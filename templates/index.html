@@ -2,6 +2,16 @@
 
 {% block content %}
     <h1>{% block title %}{% endblock %}</h1>
+
+    <!--Box flutuante bem-vindo -->
+    <script type="text/javascript">
+	        swal(
+            'Seja bem-vindo ao site',
+            'Portal Informativo sobre fraudes bancárias',
+            'success')
+    </script>
+    </script>
+
     <div id="bemvindo">
         <div id="esquerda">
             <h1><b><font color="#fffffff">Bem-vindo</font></b></h1>
@@ -13,7 +23,7 @@
         </div>
 
         <div id="direita">
-            <a href="{{url_for('relatorio')}}"><img src="../static/imagens/grafico2.png" border="0"/></a>
+            <a href="{{url_for('relatorio')}}"><img src="../static/imagens/grafico.png" border="0"/></a>
         </div>
     </div><!--fecha bemvindo -->
 
@@ -37,6 +47,7 @@
         </div>
 
     </div><!--fecha cards -->
+
 
 {% endblock %}
 
