@@ -123,8 +123,6 @@ def relatorio():
     plt.show()
     plt.close()
 
-    conn.commit()
-    conn.close()
     return render_template('relatorio.html', COUNT=participa, dezoito=dezoito_porc, vinteoito=vinteoito_porc,
                            quarenta=quarenta_porc, cinquenta=cinquenta_porc, porcentagem_fraude=porcentagem_fraude, meio_fraude=meio_fraude, maior=maior)
 
