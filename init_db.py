@@ -10,3 +10,4 @@ def get_db_connection():
         cursorclass=pymysql.cursors.DictCursor,
         db='sys'
     )
+
