@@ -55,38 +55,38 @@ def relatorio():
     cursor = conexao.cursor()
 
     cursor.execute(query_todos_participantes)
-    participa = cursor.fetchone()
-
+    participa = cursor.fetchone()['COUNT(*)']
     cursor.execute(query_selecionar_por_idade + '18 AND 27')
-    dezoito = cursor.fetchone()
+    dezoito = cursor.fetchone()['COUNT(*)']
+    print(dezoito)
     dezoito_porc = ((dezoito / participa) * 100)
 
     cursor.execute(query_selecionar_por_idade + '28 AND 39')
-    vinteoito = cursor.fetchone()
+    vinteoito = cursor.fetchone()['COUNT(*)']
     vinteoito_porc = ((vinteoito / participa) * 100)
 
     cursor.execute(query_selecionar_por_idade + '40 AND 55') 
-    quarenta = cursor.fetchone()
+    quarenta = cursor.fetchone()['COUNT(*)']
     quarenta_porc = ((quarenta / participa) * 100)
 
     cursor.execute(query_selecionar_por_idade +  '55 AND 120')
-    cinquenta = cursor.fetchone()
+    cinquenta = cursor.fetchone()['COUNT(*)']
     cinquenta_porc = ((cinquenta / participa) * 100)
 
 # variáveis tiradas do bd para uso do if logo abaixo
-    cursor.execute(selecionar_tipo_fraude + "op%")
-    tot_opcao = cursor.fetchone()
+    cursor.execute(query_selecionar_tipo_fraude + "'op%'")
+    tot_opcao = cursor.fetchone()['COUNT(*)']
 
-    cursor.execute(selecionar_tipo_fraude + "op2")
-    whats = cursor.fetchone()
+    cursor.execute(query_selecionar_tipo_fraude + "'op2'")
+    whats = cursor.fetchone()['COUNT(*)']
     whats_porc = ((whats / tot_opcao) * 100)
 
-    cursor.execute(selecionar_tipo_fraude + 'op1')
-    pix = cursor.fetchone()
+    cursor.execute(query_selecionar_tipo_fraude + "'op1'")
+    pix = cursor.fetchone()['COUNT(*)']
     pix_porc = ((whats / tot_opcao) * 100)
 
-    cursor.execute(selecionar_tipo_fraude + "op3")
-    sitenet =  cursor.fetchone() 
+    cursor.execute(query_selecionar_tipo_fraude + "'op3'")
+    sitenet =  cursor.fetchone()['COUNT(*)']
     sitenet_porc = ((whats / tot_opcao) * 100)
 
 # variavel maior pega o maior valor depois compara para substituir texto e porcentagem na pagina relatório
