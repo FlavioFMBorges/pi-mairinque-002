@@ -42,11 +42,13 @@ def formulario():
                         query_inserir_post,
                         (nome, email, idade, tipo, opcao, valida, fraude))
             conexao_form.commit()
-            cursor_form.close()
-            conexao_form.close()
+
             if nome:
                 flash(
                     'Muito obrigada por preencher nossa pesquisa. Com certeza você estará ajudando alguma pessoa em algum lugar do Brasil!')
+    
+            cursor_form.close()
+            conexao_form.close()
             return redirect(url_for('formulario'))
     return render_template('formulario.html')
 
