@@ -5,6 +5,7 @@ from init_db import get_db_connection
 from constantes import paleta_cores, rotulos
 from comandos_sql import query_selecionar_tipo_fraude, query_todos_participantes , query_inserir_post, query_selecionar_por_idade
 app = Flask(__name__, static_folder='static', template_folder='templates')
+app.config['SECRET_KEY'] = 'anystringthatyoulike'
 
 @app.route('/')
 def index():
