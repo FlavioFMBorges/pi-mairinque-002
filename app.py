@@ -5,8 +5,6 @@ from init_db import get_db_connection
 from constantes import paleta_cores, rotulos
 from comandos_sql import query_selecionar_tipo_fraude, query_todos_participantes , query_inserir_post, query_selecionar_por_idade
 app = Flask(__name__, static_folder='static', template_folder='templates')
-conexao = get_db_connection()
-cursor = conexao.cursor()
 
 @app.route('/')
 def index():
@@ -26,6 +24,8 @@ def contate():
 
 @app.route('/formulario', methods=('GET', 'POST'))
 def formulario():
+    conexao_form = get_db_connection()
+    cursor_form = conexao_form.cursor()
     if request.method == 'POST':
         nome = request.form['nome']
         email = request.form['email']
@@ -38,10 +38,12 @@ def formulario():
         if not nome:
             flash('Insira o nome completo!')
         else:
-            cursor.execute(
+            cursor_form.execute(
                         query_inserir_post,
                         (nome, email, idade, tipo, opcao, valida, fraude))
-            cursor.commit()
+            cursor_form.commit()
+            cursor_form.close()
+            conexao_form.close()
             if nome:
                 flash(
                     'Muito obrigada por preencher nossa pesquisa. Com certeza você estará ajudando alguma pessoa em algum lugar do Brasil!')
@@ -51,42 +53,41 @@ def formulario():
 @app.route('/relatorio', methods=('GET', 'POST'))
 def relatorio():
 # variaveis filtradas do bd para substituir porcentagem na pagina relatório a cada envio do formulário para o bd
-    conexao = get_db_connection()
-    cursor = conexao.cursor()
+    conexao_rel = get_db_connection()
+    cursor_rel = conexao_rel.cursor()
 
-    cursor.execute(query_todos_participantes)
-    participa = cursor.fetchone()['COUNT(*)']
-    cursor.execute(query_selecionar_por_idade + '18 AND 27')
-    dezoito = cursor.fetchone()['COUNT(*)']
-    print(dezoito)
+    cursor_rel.execute(query_todos_participantes)
+    participa = cursor_rel.fetchone()['COUNT(*)']
+    cursor_rel.execute(query_selecionar_por_idade + '18 AND 27')
+    dezoito = cursor_rel.fetchone()['COUNT(*)']
     dezoito_porc = ((dezoito / participa) * 100)
 
-    cursor.execute(query_selecionar_por_idade + '28 AND 39')
-    vinteoito = cursor.fetchone()['COUNT(*)']
+    cursor_rel.execute(query_selecionar_por_idade + '28 AND 39')
+    vinteoito = cursor_rel.fetchone()['COUNT(*)']
     vinteoito_porc = ((vinteoito / participa) * 100)
 
-    cursor.execute(query_selecionar_por_idade + '40 AND 55') 
-    quarenta = cursor.fetchone()['COUNT(*)']
+    cursor_rel.execute(query_selecionar_por_idade + '40 AND 55') 
+    quarenta = cursor_rel.fetchone()['COUNT(*)']
     quarenta_porc = ((quarenta / participa) * 100)
 
-    cursor.execute(query_selecionar_por_idade +  '55 AND 120')
-    cinquenta = cursor.fetchone()['COUNT(*)']
+    cursor_rel.execute(query_selecionar_por_idade +  '55 AND 120')
+    cinquenta = cursor_rel.fetchone()['COUNT(*)']
     cinquenta_porc = ((cinquenta / participa) * 100)
 
 # variáveis tiradas do bd para uso do if logo abaixo
-    cursor.execute(query_selecionar_tipo_fraude + "'op%'")
-    tot_opcao = cursor.fetchone()['COUNT(*)']
+    cursor_rel.execute(query_selecionar_tipo_fraude + "'op%'")
+    tot_opcao = cursor_rel.fetchone()['COUNT(*)']
 
-    cursor.execute(query_selecionar_tipo_fraude + "'op2'")
-    whats = cursor.fetchone()['COUNT(*)']
+    cursor_rel.execute(query_selecionar_tipo_fraude + "'op2'")
+    whats = cursor_rel.fetchone()['COUNT(*)']
     whats_porc = ((whats / tot_opcao) * 100)
 
-    cursor.execute(query_selecionar_tipo_fraude + "'op1'")
-    pix = cursor.fetchone()['COUNT(*)']
+    cursor_rel.execute(query_selecionar_tipo_fraude + "'op1'")
+    pix = cursor_rel.fetchone()['COUNT(*)']
     pix_porc = ((whats / tot_opcao) * 100)
 
-    cursor.execute(query_selecionar_tipo_fraude + "'op3'")
-    sitenet =  cursor.fetchone()['COUNT(*)']
+    cursor_rel.execute(query_selecionar_tipo_fraude + "'op3'")
+    sitenet =  cursor_rel.fetchone()['COUNT(*)']
     sitenet_porc = ((whats / tot_opcao) * 100)
 
 # variavel maior pega o maior valor depois compara para substituir texto e porcentagem na pagina relatório
@@ -123,10 +124,11 @@ def relatorio():
     plt.show()
     plt.close()
 
+    cursor_rel.close()
+    conexao_rel.close()
+
     return render_template('relatorio.html', COUNT=participa, dezoito=dezoito_porc, vinteoito=vinteoito_porc,
                            quarenta=quarenta_porc, cinquenta=cinquenta_porc, porcentagem_fraude=porcentagem_fraude, meio_fraude=meio_fraude, maior=maior)
 
-cursor.close()
-conexao.close()
 if __name__ == '__main__':
     app.run(debug=True)
