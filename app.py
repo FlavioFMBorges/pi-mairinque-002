@@ -41,7 +41,7 @@ def formulario():
             cursor_form.execute(
                         query_inserir_post,
                         (nome, email, idade, tipo, opcao, valida, fraude))
-            cursor_form.commit()
+            conexao_form.commit()
             cursor_form.close()
             conexao_form.close()
             if nome:
